@@ -1,0 +1,57 @@
+<div class="page">
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <h1 class="left-heading">Good to<br />have you <em>back.</em></h1>
+    <p class="left-body">Your ideas, your feed, your people — all waiting for you on the other side.</p>
+
+    <div class="testimonial">
+      <div class="testimonial-quote">
+        "Yolde is the only place I actually finish reading articles. There's something about the writing here that just hits different."
+      </div>
+      <div class="testimonial-author">
+        <div class="t-avatar">AH</div>
+        <div>
+          <div class="t-name">Alex Halex</div>
+          <div class="t-role">Software Engineer · 1.2k followers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+    <div class="form-card">
+      <div class="form-header">
+        <div class="form-title">Sign <span>In</span></div>
+        <div class="form-subtitle">No account yet? <a routerLink="/register" routerLinkActive="active">Create one free →</a></div>
+      </div>
+
+      <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+        <!-- EMAIL -->
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <div class="input-wrap">
+            <input formControlName="email" type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+          </div>
+          <div class="error-msg" id="emailErr">Please enter a valid email address.</div>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <input formControlName="password" type="password" id="password" placeholder="Your password" autocomplete="current-password" />
+            <button type="button" class="pw-toggle" id="pwToggle">Show</button>
+          </div>
+          <div class="error-msg" id="passwordErr">Password must be at least 8 characters.</div>
+        </div>
+
+        <!-- SUBMIT -->
+        <button type="submit" [disabled]="!authForm.valid" class="btn-submit" id="submitBtn">
+          <span id="btnText">Sign In</span>
+          <span class="arrow" id="btnArrow">→</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

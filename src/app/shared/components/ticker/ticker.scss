@@ -1,0 +1,33 @@
+/* TICKER */
+.ticker {
+  background: var(--yellow);
+  color: var(--black);
+  padding: 0.5rem 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-inner {
+  display: inline-flex;
+  animation: ticker 20s linear infinite;
+}
+
+.ticker-item {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  padding: 0 2rem;
+}
+
+.ticker-sep {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

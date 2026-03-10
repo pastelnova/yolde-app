@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --yellow: #ffd400;
+  --black: #0a0a0a;
+  --white: #fafafa;
+  --gray: #1a1a1a;
+  --gray-mid-5: #555;
+  --gray-mid-6: #666;
+  --gray-mid-8: #888;
+  --gray-mid-9: #999;
+  --gray-mid-b: #bbb;
+  --gray-mid-a: #aaa;
+  --gray-mid-light: #ccc;
+  --gray-light: #e8e8e8;
+  --red-mid: #e53;
+  --green-mid: #0c6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+.material-symbols-outlined {
+  font-size: 16px;
+}
+
+.filled {
+  font-variation-settings: 'FILL' 1;
+}

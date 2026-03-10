@@ -1,0 +1,81 @@
+<div class="page">
+  <!-- LEFT PANEL -->
+  <div class="left-panel">
+    <h1 class="left-heading">Your voice<br />deserves to<br />be <em>heard.</em></h1>
+    <p class="left-body">Thousands of writers and readers are already on Yolde. It takes 30 seconds to join them.</p>
+    <div class="perks">
+      <div class="perk">
+        <div class="perk-text">
+          <strong>Write &amp; Publish Freely</strong>
+          <span>No paywalls. No algorithms burying your work. Just readers who care. </span>
+        </div>
+      </div>
+      <div class="perk">
+        <div class="perk-text">
+          <strong>Curated Feed</strong>
+          <span>Follow topics and writers that match your interests, not what's trending. </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel">
+    <div class="form-card">
+      <div class="form-header">
+        <div class="form-title">Create <span>Account</span></div>
+        <div class="form-subtitle">Already have one? <a routerLink="/signin" routerLinkActive="active">Sign in &rarr;</a></div>
+      </div>
+
+      <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+        <!-- USERNAME -->
+        <div class="form-group">
+          <label for="username">Username</label>
+          <div class="input-wrap">
+            <input formControlName="username" type="text" id="username" placeholder="@username" autocomplete="off" oninput="checkUsername(this)" />
+          </div>
+          <div class="availability" id="usernameAvail">
+            <div class="avail-dot" id="availDot"></div>
+            <span id="availText" class="availText">Choose a unique handle</span>
+          </div>
+          <div class="error-msg" id="usernameErr">Please choose a username.</div>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <div class="input-wrap">
+            <input formControlName="email" type="email" id="email" placeholder="you@example.com" autocomplete="email" />
+          </div>
+          <div class="error-msg" id="emailErr">Please enter a valid email address.</div>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <input
+              formControlName="password"
+              type="password"
+              id="password"
+              placeholder="Create a strong password"
+              autocomplete="new-password"
+              oninput="
+                checkStrength(this);
+                checkConfirm();
+              " />
+            <button type="button" class="pw-toggle">Show</button>
+          </div>
+          <div class="strength-label" id="strengthLabel"></div>
+          <div class="error-msg" id="passwordErr">Password must be at least 8 characters.</div>
+        </div>
+
+        <!-- SUBMIT -->
+        <button type="submit" [disabled]="!authForm.valid" class="btn-submit" id="submitBtn">
+          <span id="btnText">Create Account</span>
+          <span class="arrow" id="btnArrow">&rarr;</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

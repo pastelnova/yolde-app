@@ -1,0 +1,32 @@
+<div class="pagination">
+  <button class="page-btn active">1</button>
+  <button class="page-btn">2</button>
+  <button class="page-btn">3</button>
+  <button class="page-btn">4</button>
+  <button class="page-btn">5</button>
+  <button class="page-btn">→</button>
+</div>
+
+<nav class="text-xs-center">
+  @if (articles().length > 0) {
+  <ul class="pagination">
+    <!-- [class.blur-overlay]="isLoading()" -->
+    <li class="page-item" [class.disabled]="currentPage() === 1">
+      <button type="button" class="page-link" (click)="goToPage(currentPage() - 1)">&laquo;</button>
+    </li>
+
+    @for (page of getVisiblePages(currentPage(), totalPages()); track $index) { @if (page === "...") {
+    <li class="page-item disabled">
+      <span class="page-link">...</span>
+    </li>
+    } @else {
+    <li class="page-item" [class.active]="currentPage() === page">
+      <button type="button" class="page-link" (click)="goToPage(page)">{{ page }}</button>
+    </li>
+    } }
+    <li class="page-item" [class.disabled]="currentPage() === totalPages()">
+      <button type="button" class="page-link" (click)="goToPage(currentPage() + 1)">&raquo;</button>
+    </li>
+  </ul>
+  }
+</nav>

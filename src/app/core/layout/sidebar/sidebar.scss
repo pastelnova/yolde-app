@@ -1,0 +1,80 @@
+/* SIDEBAR */
+.sidebar {
+  height: 100%;
+  padding-left: 2.5rem;
+  border-left: 1px solid var(--gray-light);
+}
+
+.sidebar-section {
+  margin-bottom: 2.5rem;
+}
+
+.sidebar-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  color: var(--black);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--yellow);
+  display: inline-block;
+}
+
+.sidebar-text {
+  font-size: 0.82rem;
+  color: var(--gray-mid-6);
+  line-height: 1.7;
+}
+
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-cloud .tag-chip {
+  font-size: 0.7rem;
+}
+
+.tag-chip {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--gray-light);
+  color: var(--gray-mid-8);
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+.tag-chip:hover {
+  border-color: var(--yellow);
+  background: var(--yellow);
+  color: var(--black);
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 0;
+  background: var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--black);
+  flex-shrink: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .sidebar {
+    border-left: none;
+    border-top: 1px solid var(--gray-light);
+    padding-left: 0;
+    padding-top: 2.5rem;
+    margin-top: 1rem;
+  }
+}

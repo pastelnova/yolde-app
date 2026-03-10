@@ -1,0 +1,71 @@
+footer {
+  background: var(--white);
+  border-top: 3px solid var(--yellow);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ghost wordmark */
+footer::before {
+  content: 'YOLDE';
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28vw;
+  color: rgba(255, 212, 0, 0.03);
+  position: absolute;
+  bottom: -4vw;
+  right: -2vw;
+  pointer-events: none;
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 2rem;
+  position: relative;
+  z-index: 1;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer-copy {
+  font-size: 0.72rem;
+  color: var(--gray-mid-5);
+  letter-spacing: 0.06em;
+}
+
+.footer-copy strong {
+  color: var(--gray-mid-8);
+  font-weight: 700;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.footer-legal li a {
+  font-size: 0.7rem;
+  color: var(--gray-mid-5);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  transition: color 0.2s;
+}
+
+.footer-legal li a:hover {
+  color: var(--yellow);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .footer-bottom {
+    padding: 1.2rem 2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}

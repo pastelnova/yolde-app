@@ -1,0 +1,16 @@
+<main>
+  <div class="feed-header">
+    <button class="feed-tab active" (click)="getGlobalArticles()">Global Feed</button>
+    @if (store.isAuthenticated()) {
+    <button class="feed-tab" (click)="getPersonalFeedArticles()">Your Feed</button>
+    }
+  </div>
+
+  <div class="article-list" id="articleList">
+    @for (article of articles(); track article) {
+    <app-article [article]="article"></app-article>
+    }
+  </div>
+
+  <!-- <app-pagination></app-pagination> -->
+</main>

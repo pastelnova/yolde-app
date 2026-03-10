@@ -1,0 +1,56 @@
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Yolde</a>
+  @if (!store.isAuthenticated()) {
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li>
+      <a class="nav-link" routerLink="/signin" routerLinkActive="active">Sign in</a>
+    </li>
+    <li>
+      <a class="nav-link btn-signup" routerLink="/register" routerLinkActive="active">Get Started</a>
+    </li>
+  </ul>
+  } @else {
+
+  <!-- WRITE NEW ARTICLE -->
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li>
+      <a href="#" class="btn-write"> <span class="material-symbols-outlined"> stylus_fountain_pen </span> Write </a>
+    </li>
+    <li>
+      <div class="nav-avatar-wrap" #avatarWrap>
+        <button
+          class="nav-avatar"
+          id="avatarBtn"
+          (click)="toggleDropdown($event)"
+          [attr.aria-expanded]="isDropdownOpen()"
+          aria-label="Open user menu">
+          AH
+        </button>
+        <div class="nav-dropdown" [class.open]="isDropdownOpen()">
+          <!-- USER INFO -->
+          <div class="dropdown-header">
+            <div class="dropdown-name">Alex Halex</div>
+            <div class="dropdown-handle">@alexhalex · 1.2k followers</div>
+          </div>
+
+          <!-- MENU ITEMS -->
+          <ul class="dropdown-links">
+            <li>
+              <a href="#"> <span class="material-symbols-outlined"> account_circle </span> Profile </a>
+            </li>
+            <li>
+              <a href="#"> <span class="material-symbols-outlined"> settings </span> Settings </a>
+            </li>
+            <li class="signout" (click)="onSignout()">
+              <button class="signout-btn"><span class="material-symbols-outlined"> trending_flat </span> Sign Out</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </li>
+  </ul>
+  }
+</nav>

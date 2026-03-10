@@ -1,0 +1,16 @@
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-title">Popular Tags</div>
+    <div class="tag-cloud">
+      @if (tags()) { @for (tag of tags(); track tag) {
+      <span class="tag-chip">{{ tag }}</span>
+      } }
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-title">About Yolde</div>
+    <p class="sidebar-text">Yolde is a community of curious people sharing ideas worth reading. Write for free. Read forever.</p>
+  </div>
+</aside>

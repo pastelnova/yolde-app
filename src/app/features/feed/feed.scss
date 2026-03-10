@@ -1,0 +1,32 @@
+/* FEED */
+.feed-header {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 2rem;
+  border-bottom: 3px solid var(--black);
+}
+
+.feed-tab {
+  padding: 0.8rem 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: var(--gray-mid-8);
+  transition: all 0.2s;
+  position: relative;
+}
+
+.feed-tab.active {
+  background: var(--black);
+  color: var(--yellow);
+}
+
+.feed-tab:not(.active):hover {
+  color: var(--black);
+  background: var(--gray-light);
+}
