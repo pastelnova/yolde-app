@@ -7,5 +7,14 @@ import { Component, signal } from '@angular/core';
   styleUrl: './ticker.scss',
 })
 export class Ticker {
-  titles = signal<string[]>(['NEW', 'TRENDING', 'NEW', 'TRENDING', 'NEW', 'TRENDING', 'NEW', 'TRENDING']);
+  titles = signal<string[]>([
+    'NEW',
+    'TRENDING',
+    'NEW',
+    'TRENDING',
+    'NEW',
+    'TRENDING',
+    'NEW',
+    'TRENDING',
+  ]);
 }

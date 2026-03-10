@@ -1,6 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../core/auth/services/auth.service';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AuthFormInterface } from '../../core/auth/models/auth-form.interface';
 import { Router, RouterModule } from '@angular/router';
 
@@ -43,7 +48,7 @@ export class Register {
         next: () => {
           this.router.navigate(['/']);
         },
-        error: error => {
+        error: (error) => {
           console.error('Registration failed:', error);
         },
       });

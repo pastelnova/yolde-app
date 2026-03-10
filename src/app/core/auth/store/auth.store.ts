@@ -1,4 +1,10 @@
-import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
+import {
+  patchState,
+  signalStore,
+  withComputed,
+  withMethods,
+  withState,
+} from '@ngrx/signals';
 import { UserInterface } from '../models/user.interface';
 
 interface AuthState {
@@ -14,10 +20,10 @@ const initialState: AuthState = {
 export const authStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
-  withComputed(state => ({
+  withComputed((state) => ({
     isAuthenticated: () => !!state.currentUser(),
   })),
-  withMethods(store => {
+  withMethods((store) => {
     return {
       signIn(user: UserInterface) {
         patchState(store, { isSignedIn: true, currentUser: user });
@@ -26,5 +32,5 @@ export const authStore = signalStore(
         patchState(store, { isSignedIn: false, currentUser: null });
       },
     };
-  })
+  }),
 );

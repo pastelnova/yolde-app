@@ -8,6 +8,8 @@ import { ArticleInterface } from '../models/article.interface';
 export class ArticleService {
   type = signal<string>('global');
 
-  getArticlesResources = httpResource<{ articles: ArticleInterface[] }>(() => `/articles`);
+  getArticlesResources = httpResource<{ articles: ArticleInterface[] }>(
+    () => `/articles`,
+  );
   articles = computed(() => this.getArticlesResources.value()?.articles ?? []);
 }

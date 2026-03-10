@@ -1,4 +1,11 @@
-import { Component, ElementRef, HostListener, ViewChild, inject, signal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  ViewChild,
+  inject,
+  signal,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { authStore } from '../../auth/store/auth.store';
 import { AuthService } from '../../auth/services/auth.service';
@@ -27,7 +34,7 @@ export class Nav {
   // Avatar dropdown toggle
   toggleDropdown(event: MouseEvent): void {
     event.stopPropagation();
-    this.isDropdownOpen.update(open => !open);
+    this.isDropdownOpen.update((open) => !open);
   }
 
   onSignout(): void {

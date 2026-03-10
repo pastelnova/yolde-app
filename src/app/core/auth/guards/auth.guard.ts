@@ -9,7 +9,7 @@ export const authGuard: CanActivateFn = () => {
   const authService = inject(AuthService);
 
   return toObservable(authService.getCurrentUserResource.status).pipe(
-    filter(status => status !== 'loading'),
+    filter((status) => status !== 'loading'),
     map(() => {
       const user = authService.getCurrentUserResource.value()?.user;
 
@@ -18,6 +18,6 @@ export const authGuard: CanActivateFn = () => {
       }
 
       return true;
-    })
+    }),
   );
 };

@@ -1,4 +1,11 @@
-import { Component, computed, inject, input, linkedSignal, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  input,
+  linkedSignal,
+  signal,
+} from '@angular/core';
 import { ArticleInterface } from '../../models/article.interface';
 import { ArticleService } from '../../services/article.service';
 
@@ -16,7 +23,9 @@ export class Pagination {
 
   pageSize = signal(5);
 
-  totalPages = computed(() => Math.ceil(this.articlesCount() / this.pageSize()));
+  totalPages = computed(() =>
+    Math.ceil(this.articlesCount() / this.pageSize()),
+  );
 
   currentPage = linkedSignal({
     source: () => this.articleService.type(),
@@ -34,7 +43,11 @@ export class Pagination {
     return Math.ceil(totalArticles / pageSize);
   };
 
-  getVisiblePages(currentPage: number, totalPages: number, showPagesAround = 2): (number | string)[] {
+  getVisiblePages(
+    currentPage: number,
+    totalPages: number,
+    showPagesAround = 2,
+  ): (number | string)[] {
     if (totalPages <= 7) {
       const pages = [];
       for (let i = 1; i <= totalPages; i++) {

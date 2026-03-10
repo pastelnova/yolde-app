@@ -15,9 +15,13 @@ export class Feed {
   private articleService = inject(ArticleService);
   store = inject(authStore);
 
-  private currentUser = computed(() => this.authService.getCurrentUserResource.value()?.user.username ?? '');
+  private currentUser = computed(
+    () => this.authService.getCurrentUserResource.value()?.user.username ?? '',
+  );
 
-  articles = computed(() => this.articleService.getArticlesResources.value()?.articles ?? []);
+  articles = computed(
+    () => this.articleService.getArticlesResources.value()?.articles ?? [],
+  );
 
   getGlobalArticles() {
     console.log('Fetching global articles...');

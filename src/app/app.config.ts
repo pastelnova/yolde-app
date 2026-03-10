@@ -1,8 +1,16 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+  provideZonelessChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
 import { tokenInterceptor } from './core/auth/interceptors/token.interceptor';
 import { baseUrlInterceptor } from './core/auth/interceptors/api.interceptor';
 import { provideStore } from '@ngrx/store';
@@ -13,8 +21,11 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([baseUrlInterceptor, tokenInterceptor]), withFetch()),
+    provideHttpClient(
+      withInterceptors([baseUrlInterceptor, tokenInterceptor]),
+      withFetch(),
+    ),
     provideStore(),
-    provideEffects()
-],
+    provideEffects(),
+  ],
 };

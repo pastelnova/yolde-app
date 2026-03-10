@@ -1,5 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { AuthFormInterface } from '../../core/auth/models/auth-form.interface';
 import { AuthService } from '../../core/auth/services/auth.service';
 import { Router, RouterModule } from '@angular/router';
@@ -38,7 +43,7 @@ export class Signin {
         next: () => {
           this.router.navigate(['/']);
         },
-        error: error => {
+        error: (error) => {
           console.log('Signin failed:', error);
         },
       });
