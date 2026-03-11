@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { ArticleService } from '../../services/article.service';
 
 @Component({
   selector: 'app-ticker',
@@ -7,14 +8,8 @@ import { Component, signal } from '@angular/core';
   styleUrl: './ticker.scss',
 })
 export class Ticker {
-  titles = signal<string[]>([
-    'NEW',
-    'TRENDING',
-    'NEW',
-    'TRENDING',
-    'NEW',
-    'TRENDING',
-    'NEW',
-    'TRENDING',
-  ]);
+  articleService = inject(ArticleService);
+
+  private titlesResource = this.articleService.getArticleTitles();
+  titles = computed(() => this.titlesResource.value() ?? []);
 }

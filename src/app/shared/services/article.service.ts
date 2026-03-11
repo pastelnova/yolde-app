@@ -33,4 +33,13 @@ export class ArticleService {
       }
     });
   }
+
+  getArticleTitles() {
+    return httpResource<string[]>(() => `/articles?limit=10&offset=0`, {
+      parse: (response) => {
+        const data = response as { articles: ArticleInterface[] };
+        return data.articles.map((article) => article.title);
+      },
+    });
+  }
 }
