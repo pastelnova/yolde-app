@@ -3,20 +3,23 @@ import { Article } from '../../shared/components/article/article';
 import { authStore } from '../../core/auth/store/auth.store';
 import { AuthService } from '../../core/auth/services/auth.service';
 import { ArticleService } from '../../shared/services/article.service';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-feed',
-  imports: [Article],
+  imports: [CommonModule, Article, RouterModule],
   templateUrl: './feed.html',
   styleUrl: './feed.scss',
 })
 export class Feed {
   private authService = inject(AuthService);
-  private articleService = inject(ArticleService);
+  articleService = inject(ArticleService);
+  router = inject(Router);
   store = inject(authStore);
 
-  private currentUser = computed(
-    () => this.authService.getCurrentUserResource.value()?.user.username ?? '',
+  private user = computed(
+    () => this.authService.getCurrentUserResource.value()?.user,
   );
 
   articles = computed(
@@ -24,10 +27,14 @@ export class Feed {
   );
 
   getGlobalArticles() {
-    console.log('Fetching global articles...');
+    this.articleService.type.set('global');
   }
 
   getPersonalFeedArticles() {
-    console.log('Fetching your feed articles...');
+    if (this.user()) {
+      this.articleService.type.set('feed');
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 }
