@@ -20,8 +20,9 @@ export class Pagination {
 
   articles = input.required<ArticleInterface[]>();
   articlesCount = input.required<number>();
+  isLoading = input.required<boolean>();
 
-  pageSize = signal(5);
+  pageSize = signal(1);
 
   totalPages = computed(() =>
     Math.ceil(this.articlesCount() / this.pageSize()),

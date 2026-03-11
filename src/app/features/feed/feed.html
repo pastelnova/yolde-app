@@ -1,5 +1,12 @@
 <main>
   <div class="feed-header">
+    <button
+      class="feed-tab"
+      [ngClass]="{ active: this.articleService.type() === 'global' }"
+      (click)="getGlobalArticles()"
+    >
+      Global Feed
+    </button>
     @if (store.isAuthenticated()) {
       <button
         class="feed-tab"
@@ -9,13 +16,6 @@
         Your Feed
       </button>
     }
-    <button
-      class="feed-tab"
-      [ngClass]="{ active: this.articleService.type() === 'global' }"
-      (click)="getGlobalArticles()"
-    >
-      Global Feed
-    </button>
   </div>
 
   <div class="article-list" id="articleList">
@@ -24,5 +24,9 @@
     }
   </div>
 
-  <!-- <app-pagination></app-pagination> -->
+  <app-pagination
+    [articles]="articles()"
+    [isLoading]="isLoading()"
+    [articlesCount]="articlesCount()"
+  ></app-pagination>
 </main>

@@ -5,10 +5,11 @@ import { AuthService } from '../../core/auth/services/auth.service';
 import { ArticleService } from '../../shared/services/article.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Pagination } from '../../shared/components/pagination/pagination';
 
 @Component({
   selector: 'app-feed',
-  imports: [CommonModule, Article, RouterModule],
+  imports: [CommonModule, Article, RouterModule, Pagination],
   templateUrl: './feed.html',
   styleUrl: './feed.scss',
 })
@@ -24,6 +25,12 @@ export class Feed {
 
   articles = computed(
     () => this.articleService.getArticlesResources.value()?.articles ?? [],
+  );
+  articlesCount = computed(
+    () => this.articleService.getArticlesResources.value()?.articlesCount ?? 0,
+  );
+  isLoading = computed(() =>
+    this.articleService.getArticlesResources.isLoading(),
   );
 
   getGlobalArticles() {
