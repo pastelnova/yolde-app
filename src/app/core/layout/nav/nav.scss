@@ -13,7 +13,7 @@ nav {
 }
 
 .nav-logo {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 2rem;
   color: var(--yellow);
   letter-spacing: 0.05em;
@@ -92,7 +92,7 @@ nav {
   height: 36px;
   background: var(--yellow);
   color: var(--black);
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -119,7 +119,7 @@ nav {
   top: calc(100% + 12px);
   right: 0;
   background: var(--black);
-  border: 1px solid #2a2a2a;
+  border: 1px solid var(--gray-2a);
   border-top: 3px solid var(--yellow);
   min-width: 200px;
   z-index: 200;
@@ -144,11 +144,11 @@ nav {
 /* DROPDOWN HEADER */
 .dropdown-header {
   padding: 1rem 1.2rem 0.8rem;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid var(--gray-mid-2);
 }
 
 .dropdown-name {
-  font-family: 'DM Serif Display', serif;
+  font-family: "DM Serif Display", serif;
   font-size: 1rem;
   color: var(--white);
   line-height: 1.2;
@@ -184,7 +184,7 @@ nav {
 }
 
 .dropdown-links li a:hover {
-  background: #111;
+  background: var(--gray-mid-1);
   color: var(--yellow);
 }
 
@@ -200,11 +200,11 @@ nav {
   width: 100%;
   background: none;
   border: none;
-  border-top: 1px solid #1e1e1e;
+  border-top: 1px solid var(--gray-1e);
   margin-top: 0.25rem;
   padding: 0.85rem 1.2rem 0.65rem;
   color: var(--gray-mid-5);
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   font-size: 0.82rem;
   font-weight: 500;
   letter-spacing: 0.04em;

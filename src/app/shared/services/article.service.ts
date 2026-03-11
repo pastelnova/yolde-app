@@ -63,4 +63,18 @@ export class ArticleService {
       .delete<{ article: ArticleInterface }>(`/articles/${slug}/favorite`)
       .pipe(map((data) => data.article));
   }
+
+  getEditorsPickArticle() {
+    return httpResource<ArticleInterface>(() => `/articles?limit=20&offset=0`, {
+      parse: (response) => {
+        const articles = (response as { articles: ArticleInterface[] })
+          .articles;
+        const maxLikes = Math.max(...articles.map((a) => a.favoritesCount));
+        const topArticles = articles.filter(
+          (a) => a.favoritesCount === maxLikes,
+        );
+        return topArticles[Math.floor(Math.random() * topArticles.length)];
+      },
+    });
+  }
 }
