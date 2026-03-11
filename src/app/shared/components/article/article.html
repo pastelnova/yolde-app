@@ -1,19 +1,27 @@
 <div class="article-item">
   <div>
     <div class="article-item-meta">
-      <div class="article-avatar">{{ article().author.username.charAt(0) | uppercase }}{{ article().author.username.charAt(1) | uppercase }}</div>
+      <div class="article-avatar">
+        {{ article().author.username.charAt(0) | uppercase
+        }}{{ article().author.username.charAt(1) | uppercase }}
+      </div>
       <span class="article-author">{{ article().author.username }}</span>
-      <span class="article-date">{{ article().createdAt | date: "mediumDate" }}</span>
+      <span class="article-date">{{
+        article().createdAt | date: "mediumDate"
+      }}</span>
     </div>
     <div class="article-title">{{ article().title }}</div>
     <div class="article-desc">{{ article().description }}</div>
     <div class="article-footer">
       @for (tag of article().tagList; track tag) {
-      <span class="tag-chip">{{ tag }}</span>
+        <span class="tag-chip">{{ tag }}</span>
       }
     </div>
   </div>
-  <button class="article-fav">
-    <span class="material-symbols-outlined" [class.filled]="article().favorited"> favorite </span> {{ article().favoritesCount }}
+  <button class="article-fav" (click)="toggleLike(article().slug)">
+    <span class="material-symbols-outlined" [class.filled]="isFavorited()">
+      favorite
+    </span>
+    {{ favoritesCount() }}
   </button>
 </div>

@@ -1,9 +1,9 @@
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-inner">
-    @for (title of titles(); track title) {
-    <span class="ticker-item">{{ title }}</span>
-    <span class="material-symbols-outlined filled"> star_rate </span>
+    @for (title of titles(); track $index) {
+      <span class="ticker-item">{{ title }}</span>
+      <span class="material-symbols-outlined filled"> star_rate </span>
     }
   </div>
 </div>

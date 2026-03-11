@@ -42,7 +42,7 @@ export class Feed {
     if (this.user()) {
       this.articleService.type.set('feed');
     } else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/signin']);
     }
   }
 }

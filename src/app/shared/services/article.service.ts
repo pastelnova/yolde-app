@@ -1,11 +1,20 @@
-import { httpResource } from '@angular/common/http';
-import { Injectable, linkedSignal, Signal, signal } from '@angular/core';
+import { HttpClient, httpResource } from '@angular/common/http';
+import {
+  inject,
+  Injectable,
+  linkedSignal,
+  Signal,
+  signal,
+} from '@angular/core';
+import { map, Observable } from 'rxjs';
 import { ArticleInterface } from '../models/article.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticleService {
+  private http = inject(HttpClient);
+
   type = signal<string>('global');
   pageSize = signal(3);
 
@@ -41,5 +50,17 @@ export class ArticleService {
         return data.articles.map((article) => article.title);
       },
     });
+  }
+
+  likeArticle(slug: string): Observable<ArticleInterface> {
+    return this.http
+      .post<{ article: ArticleInterface }>(`/articles/${slug}/favorite`, {})
+      .pipe(map((data) => data.article));
+  }
+
+  unlikeArticle(slug: string): Observable<ArticleInterface> {
+    return this.http
+      .delete<{ article: ArticleInterface }>(`/articles/${slug}/favorite`)
+      .pipe(map((data) => data.article));
   }
 }
