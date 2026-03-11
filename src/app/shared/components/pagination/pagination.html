@@ -2,7 +2,7 @@
   <div class="pagination">
     <button
       class="page-btn"
-      [class.disabled]="currentPage() === 1"
+      [disabled]="currentPage() === 1"
       (click)="goToPage(currentPage() - 1)"
     >
       &laquo;
@@ -23,7 +23,7 @@
     <button
       type="button"
       class="page-btn"
-      [class.disabled]="currentPage() === totalPages()"
+      [disabled]="currentPage() === totalPages()"
       (click)="goToPage(currentPage() + 1)"
     >
       &raquo;

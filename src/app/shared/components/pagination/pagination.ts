@@ -1,11 +1,4 @@
-import {
-  Component,
-  computed,
-  inject,
-  input,
-  linkedSignal,
-  signal,
-} from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { ArticleInterface } from '../../models/article.interface';
 import { ArticleService } from '../../services/article.service';
 
@@ -21,23 +14,19 @@ export class Pagination {
   articles = input.required<ArticleInterface[]>();
   articlesCount = input.required<number>();
   isLoading = input.required<boolean>();
-
-  pageSize = signal(1);
+  pageSize = this.articleService.pageSize;
 
   totalPages = computed(() =>
     Math.ceil(this.articlesCount() / this.pageSize()),
   );
 
-  currentPage = linkedSignal({
-    source: () => this.articleService.type(),
-    computation: () => 1,
-  });
+  currentPage = this.articleService.currentPage;
 
   goToPage(page: number | string) {
     if (typeof page === 'string') {
       return;
     }
-    this.currentPage.set(page);
+    this.articleService.currentPage.set(page);
   }
 
   calculateTotalPages = (totalArticles: number, pageSize: number): number => {

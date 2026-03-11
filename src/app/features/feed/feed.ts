@@ -1,11 +1,11 @@
-import { Component, computed, inject } from '@angular/core';
-import { Article } from '../../shared/components/article/article';
-import { authStore } from '../../core/auth/store/auth.store';
-import { AuthService } from '../../core/auth/services/auth.service';
-import { ArticleService } from '../../shared/services/article.service';
-import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Component, computed, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../core/auth/services/auth.service';
+import { authStore } from '../../core/auth/store/auth.store';
+import { Article } from '../../shared/components/article/article';
 import { Pagination } from '../../shared/components/pagination/pagination';
+import { ArticleService } from '../../shared/services/article.service';
 
 @Component({
   selector: 'app-feed',
@@ -23,14 +23,15 @@ export class Feed {
     () => this.authService.getCurrentUserResource.value()?.user,
   );
 
-  articles = computed(
-    () => this.articleService.getArticlesResources.value()?.articles ?? [],
-  );
+  articles = computed(() => this.articlesResource.value()?.articles ?? []);
   articlesCount = computed(
-    () => this.articleService.getArticlesResources.value()?.articlesCount ?? 0,
+    () => this.articlesResource.value()?.articlesCount ?? 0,
   );
-  isLoading = computed(() =>
-    this.articleService.getArticlesResources.isLoading(),
+  isLoading = computed(() => this.articlesResource.isLoading());
+
+  articlesResource = this.articleService.getArticlePerPage(
+    this.articleService.type,
+    this.articleService.currentPage,
   );
 
   getGlobalArticles() {
