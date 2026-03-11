@@ -1,4 +1,4 @@
-<main>
+<main id="global-feed">
   <div class="feed-header">
     <button
       class="feed-tab"
@@ -13,7 +13,7 @@
         [ngClass]="{ active: this.articleService.type() !== 'global' }"
         (click)="getPersonalFeedArticles()"
       >
-        Your Feed
+        My Feed
       </button>
     }
   </div>
