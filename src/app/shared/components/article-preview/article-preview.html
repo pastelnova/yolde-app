@@ -16,6 +16,10 @@
       @for (tag of article().tagList; track tag) {
         <span class="tag-chip">{{ tag }}</span>
       }
+      <a class="read-more" [routerLink]="['/articles', article().slug]">
+        Read more
+        <span class="arrow">&rarr;</span>
+      </a>
     </div>
   </div>
   <button class="article-fav" (click)="toggleLike(article().slug)">

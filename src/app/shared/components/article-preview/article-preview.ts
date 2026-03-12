@@ -1,13 +1,13 @@
 import { DatePipe, UpperCasePipe } from '@angular/common';
 import { Component, effect, inject, input, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { authStore } from '../../../core/auth/store/auth.store';
 import { ArticleInterface } from '../../models/article.interface';
 import { ArticleService } from '../../services/article.service';
 
 @Component({
   selector: 'app-article-preview',
-  imports: [DatePipe, UpperCasePipe],
+  imports: [DatePipe, UpperCasePipe, RouterLink],
   templateUrl: './article-preview.html',
   styleUrl: './article-preview.scss',
 })
