@@ -43,6 +43,12 @@ export class ArticleService {
     });
   }
 
+  getArticleBySlug(slug: Signal<string>) {
+    return httpResource<{ article: ArticleInterface }>(() =>
+      slug() ? `/articles/${slug()}` : undefined,
+    );
+  }
+
   getArticleTitles() {
     return httpResource<string[]>(() => `/articles?limit=10&offset=0`, {
       parse: (response) => {
