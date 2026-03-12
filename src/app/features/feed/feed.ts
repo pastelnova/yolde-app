@@ -3,13 +3,13 @@ import { Component, computed, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../core/auth/services/auth.service';
 import { authStore } from '../../core/auth/store/auth.store';
-import { Article } from '../../shared/components/article/article';
+import { ArticlePreview } from '../../shared/components/article-preview/article-preview';
 import { Pagination } from '../../shared/components/pagination/pagination';
 import { ArticleService } from '../../shared/services/article.service';
 
 @Component({
   selector: 'app-feed',
-  imports: [CommonModule, Article, RouterModule, Pagination],
+  imports: [CommonModule, ArticlePreview, RouterModule, Pagination],
   templateUrl: './feed.html',
   styleUrl: './feed.scss',
 })

@@ -20,7 +20,7 @@
 
   <div class="article-list" id="articleList">
     @for (article of articles(); track article.slug) {
-      <app-article [article]="article"></app-article>
+      <app-article-preview [article]="article"></app-article-preview>
     }
   </div>
 

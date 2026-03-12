@@ -15,4 +15,9 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/register/register').then((m) => m.Register),
   },
+  {
+    path: 'articles/:slug',
+    loadComponent: () =>
+      import('./features/article/article').then((m) => m.ArticleComponent),
+  },
 ];

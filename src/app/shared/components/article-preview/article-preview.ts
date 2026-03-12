@@ -6,12 +6,12 @@ import { ArticleInterface } from '../../models/article.interface';
 import { ArticleService } from '../../services/article.service';
 
 @Component({
-  selector: 'app-article',
+  selector: 'app-article-preview',
   imports: [DatePipe, UpperCasePipe],
-  templateUrl: './article.html',
-  styleUrl: './article.scss',
+  templateUrl: './article-preview.html',
+  styleUrl: './article-preview.scss',
 })
-export class Article {
+export class ArticlePreview {
   private articleService = inject(ArticleService);
   private store = inject(authStore);
   private router = inject(Router);
