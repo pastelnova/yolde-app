@@ -1,4 +1,4 @@
-import { DatePipe, JsonPipe, UpperCasePipe } from '@angular/common';
+import { DatePipe, UpperCasePipe } from '@angular/common';
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { ArticleService } from '../../shared/services/article.service';
 
 @Component({
   selector: 'app-article',
-  imports: [JsonPipe, UpperCasePipe, DatePipe],
+  imports: [UpperCasePipe, DatePipe],
   templateUrl: './article.html',
   styleUrl: './article.scss',
 })

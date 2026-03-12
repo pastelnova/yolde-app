@@ -1,79 +1,163 @@
-<!-- <div>{{ this.article() | json }}</div> -->
-
-<!-- ARTICLE HERO -->
-<div class="article-hero">
-  <div class="hero-inner">
-    <div class="hero-breadcrumb">
-      <a href="">Home</a>
-      <span>/</span>
-      <span>Article</span>
-    </div>
-    @for (tag of article().tagList; track $index) {
-      <div class="hero-tags">
-        <span class="hero-tag-chip">{{ tag }}</span>
+<div>
+  <!-- ARTICLE HERO -->
+  <div class="article-hero">
+    <div class="hero-inner">
+      <div class="hero-breadcrumb">
+        <a href="">Home</a>
+        <span>/</span>
+        <span>Article</span>
       </div>
-    }
+      <div class="hero-tags">
+        @for (tag of article().tagList; track $index) {
+          <span class="hero-tag-chip">{{ tag }}</span>
+        }
+      </div>
 
-    <h1>{{ this.article().title }}</h1>
-    <p class="article-description">{{ this.article().description }}</p>
+      <h1>{{ this.article().title }}</h1>
+      <p class="article-description">{{ this.article().description }}</p>
 
-    <div class="hero-author-row">
-      <div class="hero-author">
-        <a class="author-avatar" href="">
-          <span>
-            {{ article().author.username.charAt(0) | uppercase
-            }}{{ article().author.username.charAt(1) | uppercase }}</span
-          >
-        </a>
-        <div class="author-info">
-          <a class="author-name" href="">{{
-            this.article().author.username
-          }}</a>
-          <div class="author-meta">
-            {{ article().createdAt | date: "mediumDate" }} ·
-            {{ readingTime() }} min read
+      <div class="hero-author-row">
+        <div class="hero-author">
+          <a class="author-avatar" href="">
+            <span>
+              {{ article().author.username.charAt(0) | uppercase
+              }}{{ article().author.username.charAt(1) | uppercase }}</span
+            >
+          </a>
+          <div class="author-info">
+            <a class="author-name" href="">{{
+              this.article().author.username
+            }}</a>
+            <div class="author-meta">
+              {{ article().createdAt | date: "mediumDate" }} ·
+              {{ readingTime() }} min read
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          @if (article().author.username === store.currentUser()?.username) {
+            <a href="" class="btn-action btn-action-edit">
+              <span class="material-symbols-outlined"> edit </span>Edit Article
+            </a>
+            <button
+              class="btn-action btn-action-delete"
+              onclick="deleteArticle()"
+            >
+              <span class="material-symbols-outlined"> close </span> Delete
+            </button>
+          } @else {
+            <button
+              class="btn-action"
+              [class.active]="isFollowing()"
+              onclick="toggleFollow()"
+            >
+              @if (isFollowing()) {
+                <span class="material-symbols-outlined filled"> check </span>
+                Following {{ article().author.username }}
+              } @else {
+                <span class="material-symbols-outlined"> add </span> Follow
+                {{ article().author.username }}
+              }
+            </button>
+            <button
+              class="btn-action"
+              [class.active]="isFavorited()"
+              (click)="toggleLike(article().slug)"
+            >
+              <span class="material-symbols-outlined filled"> favorite </span
+              >{{ isFavorited() ? "Unfavorite" : "Favorite" }} ({{
+                favoritesCount()
+              }})
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE CONTENT + SIDEBAR -->
+  <div class="article-layout">
+    <!-- BODY + FOOTER + COMMENTS -->
+    <div>
+      <div class="article-body">{{ article().body }}</div>
+
+      <!-- AUTHOR CARD -->
+      <div class="article-footer">
+        <div class="footer-author-card">
+          <a class="footer-avatar" href="">
+            <span id="footerAvatarInitials"
+              >{{ article().author.username.charAt(0) | uppercase
+              }}{{ article().author.username.charAt(1) | uppercase }}</span
+            >
+          </a>
+          <div class="footer-author-info">
+            <div class="footer-author-label">Written by</div>
+            <a class="footer-author-name" href="">{{
+              article().author.username
+            }}</a>
+            <div class="footer-author-bio">{{ article().author.bio }}</div>
+            <button class="btn-follow">
+              <span class="material-symbols-outlined"> add </span> Follow
+            </button>
           </div>
         </div>
       </div>
 
-      <div class="hero-actions">
-        @if (article().author.username === store.currentUser()?.username) {
-          <a href="" class="btn-action btn-action-edit">
-            <span class="material-symbols-outlined icon"> edit </span>Edit
-            Article
-          </a>
-          <button
-            class="btn-action btn-action-delete"
-            onclick="deleteArticle()"
-          >
-            <span class="material-symbols-outlined icon"> close </span> Delete
-          </button>
-        } @else {
-          <button
-            class="btn-action"
-            [class.active]="isFollowing()"
-            onclick="toggleFollow()"
-          >
-            @if (isFollowing()) {
-              <span class="material-symbols-outlined filled icon"> check </span>
-              Following {{ article().author.username }}
-            } @else {
-              <span class="material-symbols-outlined icon"> add </span> Follow
-              {{ article().author.username }}
-            }
-          </button>
-          <button
-            class="btn-action"
-            [class.active]="isFavorited()"
-            (click)="toggleLike(article().slug)"
-          >
-            <span class="material-symbols-outlined filled icon"> favorite </span
-            >{{ isFavorited() ? "Unfavorite" : "Favorite" }} ({{
-              favoritesCount()
-            }})
-          </button>
-        }
-      </div>
+      <!-- COMMENTS -->
     </div>
+
+    <!-- SIDEBAR -->
+    <aside class="article-sidebar">
+      <!-- Stats -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">
+          <span class="material-symbols-outlined icon"> stat_0 </span> Article
+          Stats
+        </div>
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-num">{{ favoritesCount() }}</div>
+            <div class="stat-label">Likes</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">{{ readingTime() }}</div>
+            <div class="stat-label">Min Read</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">0</div>
+            <div class="stat-label">Responses</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">
+          <span class="material-symbols-outlined icon"> stat_0 </span>Tags
+        </div>
+        <div class="tag-cloud">
+          @for (tag of article().tagList; track $index) {
+            <span class="tag-pill">{{ tag }}</span>
+          }
+        </div>
+      </div>
+
+      <!-- Dates -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-title">
+          <span class="material-symbols-outlined icon"> stat_0 </span>
+          Timestamps
+        </div>
+        <div class="timestamps-list">
+          <div>
+            <div class="timestamps-label">Published</div>
+            <div class="timestamps-value">
+              {{ article().createdAt | date: "mediumDate" }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
   </div>
 </div>
