@@ -1,9 +1,5 @@
 {
-  "css.lint.unknownAtRules": "ignore",
-  "scss.lint.unknownAtRules": "ignore",
-  "eslint.enable": true,
-  "eslint.format.enable": true,
-  "eslint.validate": ["javascript", "typescript", "html"],
+ "eslint.validate": ["javascript", "typescript", "html"],
   "eslint.useFlatConfig": true,
   "eslint.workingDirectories": ["../src"],
   "eslint.options": {
@@ -11,18 +7,5 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.configPath": ".prettierrc",
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit"
-  },
-  "editor.bracketPairColorization.enabled": true,
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[scss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  "editor.formatOnSave": true
 }
