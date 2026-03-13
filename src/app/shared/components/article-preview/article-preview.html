@@ -13,7 +13,7 @@
       @for (tag of article().tagList; track tag) {
         <span class="tag-chip">{{ tag }}</span>
       }
-      <a class="read-more" [routerLink]="['/articles', article().slug]">
+      <a class="read-more" [routerLink]="['/article', article().slug]">
         Read more
         <span class="arrow">&rarr;</span>
       </a>

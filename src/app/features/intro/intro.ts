@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { EditorsPick } from '../../shared/components/editors-pick/editors-pick';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-intro',
-  imports: [EditorsPick],
+  imports: [EditorsPick, RouterLink],
   templateUrl: './intro.html',
   styleUrl: './intro.scss',
 })
