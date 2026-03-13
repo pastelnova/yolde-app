@@ -1,11 +1,5 @@
 import { HttpClient, httpResource } from '@angular/common/http';
-import {
-  inject,
-  Injectable,
-  linkedSignal,
-  Signal,
-  signal,
-} from '@angular/core';
+import { inject, Injectable, linkedSignal, Signal, signal } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { ArticleInterface } from '../models/article.interface';
 
@@ -44,9 +38,7 @@ export class ArticleService {
   }
 
   getArticleBySlug(slug: Signal<string>) {
-    return httpResource<{ article: ArticleInterface }>(() =>
-      slug() ? `/articles/${slug()}` : undefined,
-    );
+    return httpResource<{ article: ArticleInterface }>(() => (slug() ? `/articles/${slug()}` : undefined));
   }
 
   getArticleTitles() {
@@ -73,12 +65,9 @@ export class ArticleService {
   getEditorsPickArticle() {
     return httpResource<ArticleInterface>(() => `/articles?limit=20&offset=0`, {
       parse: (response) => {
-        const articles = (response as { articles: ArticleInterface[] })
-          .articles;
+        const articles = (response as { articles: ArticleInterface[] }).articles;
         const maxLikes = Math.max(...articles.map((a) => a.favoritesCount));
-        const topArticles = articles.filter(
-          (a) => a.favoritesCount === maxLikes,
-        );
+        const topArticles = articles.filter((a) => a.favoritesCount === maxLikes);
         return topArticles[Math.floor(Math.random() * topArticles.length)];
       },
     });

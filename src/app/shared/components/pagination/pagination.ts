@@ -16,9 +16,7 @@ export class Pagination {
   isLoading = input.required<boolean>();
   pageSize = this.articleService.pageSize;
 
-  totalPages = computed(() =>
-    Math.ceil(this.articlesCount() / this.pageSize()),
-  );
+  totalPages = computed(() => Math.ceil(this.articlesCount() / this.pageSize()));
 
   currentPage = this.articleService.currentPage;
 
@@ -33,11 +31,7 @@ export class Pagination {
     return Math.ceil(totalArticles / pageSize);
   };
 
-  getVisiblePages(
-    currentPage: number,
-    totalPages: number,
-    showPagesAround = 2,
-  ): (number | string)[] {
+  getVisiblePages(currentPage: number, totalPages: number, showPagesAround = 2): (number | string)[] {
     if (totalPages <= 7) {
       const pages = [];
       for (let i = 1; i <= totalPages; i++) {

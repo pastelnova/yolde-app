@@ -7,17 +7,14 @@ export const routes: Routes = [
   },
   {
     path: 'signin',
-    loadComponent: () =>
-      import('./features/signin/signin').then((m) => m.Signin),
+    loadComponent: () => import('./features/signin/signin').then((m) => m.Signin),
   },
   {
     path: 'register',
-    loadComponent: () =>
-      import('./features/register/register').then((m) => m.Register),
+    loadComponent: () => import('./features/register/register').then((m) => m.Register),
   },
   {
     path: 'articles/:slug',
-    loadComponent: () =>
-      import('./features/article/article').then((m) => m.ArticleComponent),
+    loadComponent: () => import('./features/article/article').then((m) => m.ArticleComponent),
   },
 ];

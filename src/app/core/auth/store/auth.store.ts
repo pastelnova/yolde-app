@@ -1,10 +1,4 @@
-import {
-  patchState,
-  signalStore,
-  withComputed,
-  withMethods,
-  withState,
-} from '@ngrx/signals';
+import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { UserInterface } from '../models/user.interface';
 
 interface AuthState {

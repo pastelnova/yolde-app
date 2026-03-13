@@ -19,20 +19,13 @@ export class Feed {
   router = inject(Router);
   store = inject(authStore);
 
-  private user = computed(
-    () => this.authService.getCurrentUserResource.value()?.user,
-  );
+  private user = computed(() => this.authService.getCurrentUserResource.value()?.user);
 
   articles = computed(() => this.articlesResource.value()?.articles ?? []);
-  articlesCount = computed(
-    () => this.articlesResource.value()?.articlesCount ?? 0,
-  );
+  articlesCount = computed(() => this.articlesResource.value()?.articlesCount ?? 0);
   isLoading = computed(() => this.articlesResource.isLoading());
 
-  articlesResource = this.articleService.getArticlePerPage(
-    this.articleService.type,
-    this.articleService.currentPage,
-  );
+  articlesResource = this.articleService.getArticlePerPage(this.articleService.type, this.articleService.currentPage);
 
   getGlobalArticles() {
     this.articleService.type.set('global');

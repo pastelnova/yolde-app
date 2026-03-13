@@ -46,11 +46,7 @@ export class AuthService {
     this.tokenService.token() ? `/user` : undefined,
   );
 
-  register(user: {
-    username: string;
-    email: string;
-    password: string;
-  }): Observable<{ user: UserInterface }> {
+  register(user: { username: string; email: string; password: string }): Observable<{ user: UserInterface }> {
     return this.http.post<{ user: UserInterface }>('/users', { user }).pipe(
       tap(({ user }) => {
         this.tokenService.set(user.token);
@@ -59,18 +55,13 @@ export class AuthService {
     );
   }
 
-  signin(user: {
-    email: string;
-    password: string;
-  }): Observable<{ user: UserInterface }> {
-    return this.http
-      .post<{ user: UserInterface }>('/users/login', { user })
-      .pipe(
-        tap(({ user }) => {
-          this.tokenService.set(user.token);
-          this.store.signIn(user);
-        }),
-      );
+  signin(user: { email: string; password: string }): Observable<{ user: UserInterface }> {
+    return this.http.post<{ user: UserInterface }>('/users/login', { user }).pipe(
+      tap(({ user }) => {
+        this.tokenService.set(user.token);
+        this.store.signIn(user);
+      }),
+    );
   }
 
   signout() {

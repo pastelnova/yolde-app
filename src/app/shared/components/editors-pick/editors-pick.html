@@ -5,12 +5,11 @@
     <div class="card-excerpt">{{ pick.description }}</div>
     <div class="card-meta">
       <div class="avatar">
-        {{ pick.author.username.charAt(0) | uppercase
-        }}{{ pick.author.username.charAt(1) | uppercase }}
+        {{ pick.author.username.charAt(0) | uppercase }}{{ pick.author.username.charAt(1) | uppercase }}
       </div>
       <div class="meta-info">
         <strong>{{ pick.author.username }}</strong>
-        {{ readingTime() }} min read · {{ pick.createdAt | date: "MMM d" }}
+        {{ readingTime() }} min read · {{ pick.createdAt | date: 'MMM d' }}
       </div>
       <button class="heart-btn">
         <span class="material-symbols-outlined filled"> favorite </span>

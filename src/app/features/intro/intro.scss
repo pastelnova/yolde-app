@@ -12,8 +12,8 @@
 }
 
 .hero::before {
-  content: "YOLDE";
-  font-family: "Bebas Neue", sans-serif;
+  content: 'YOLDE';
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 26vw;
   color: rgba(255, 212, 0, 0.04);
   position: absolute;
@@ -37,7 +37,7 @@
 }
 
 .hero h1 {
-  font-family: "DM Serif Display", serif;
+  font-family: 'DM Serif Display', serif;
   font-size: clamp(3rem, 5vw, 5.5rem);
   line-height: 1.05;
   margin-bottom: 1.5rem;
@@ -67,7 +67,7 @@
   color: var(--black);
   border: none;
   padding: 0.85rem 2rem;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   letter-spacing: 0.05em;
@@ -88,7 +88,7 @@
   color: var(--white);
   border: 2px solid rgba(255, 255, 255, 0.3);
   padding: 0.85rem 2rem;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 500;
   font-size: 0.9rem;
   text-transform: uppercase;

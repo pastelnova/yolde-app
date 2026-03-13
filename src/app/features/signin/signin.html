@@ -2,15 +2,12 @@
   <!-- LEFT PANEL -->
   <div class="left-panel">
     <h1 class="left-heading">Good to<br />have you <em>back.</em></h1>
-    <p class="left-body">
-      Your ideas, your feed, your people — all waiting for you on the other
-      side.
-    </p>
+    <p class="left-body">Your ideas, your feed, your people — all waiting for you on the other side.</p>
 
     <div class="testimonial">
       <div class="testimonial-quote">
-        "Yolde is the only place I actually finish reading articles. There's
-        something about the writing here that just hits different."
+        "Yolde is the only place I actually finish reading articles. There's something about the writing here that just
+        hits different."
       </div>
       <div class="testimonial-author">
         <div class="t-avatar">AH</div>
@@ -29,9 +26,7 @@
         <div class="form-title">Sign <span>In</span></div>
         <div class="form-subtitle">
           No account yet?
-          <a routerLink="/register" routerLinkActive="active"
-            >Create one free →</a
-          >
+          <a routerLink="/register" routerLinkActive="active">Create one free →</a>
         </div>
       </div>
 
@@ -40,17 +35,9 @@
         <div class="form-group">
           <label for="email">Email address</label>
           <div class="input-wrap">
-            <input
-              formControlName="email"
-              type="email"
-              id="email"
-              placeholder="you@example.com"
-              autocomplete="email"
-            />
+            <input formControlName="email" type="email" id="email" placeholder="you@example.com" autocomplete="email" />
           </div>
-          <div class="error-msg" id="emailErr">
-            Please enter a valid email address.
-          </div>
+          <div class="error-msg" id="emailErr">Please enter a valid email address.</div>
         </div>
 
         <!-- PASSWORD -->
@@ -66,18 +53,11 @@
             />
             <button type="button" class="pw-toggle" id="pwToggle">Show</button>
           </div>
-          <div class="error-msg" id="passwordErr">
-            Password must be at least 8 characters.
-          </div>
+          <div class="error-msg" id="passwordErr">Password must be at least 8 characters.</div>
         </div>
 
         <!-- SUBMIT -->
-        <button
-          type="submit"
-          [disabled]="!authForm.valid"
-          class="btn-submit"
-          id="submitBtn"
-        >
+        <button type="submit" [disabled]="!authForm.valid" class="btn-submit" id="submitBtn">
           <span id="btnText">Sign In</span>
           <span class="arrow">&rarr;</span>
         </button>

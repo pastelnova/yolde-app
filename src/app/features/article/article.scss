@@ -12,8 +12,8 @@
 }
 
 .article-hero::before {
-  content: "YOLDE";
-  font-family: "Bebas Neue", sans-serif;
+  content: 'YOLDE';
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 30vw;
   color: rgba(255, 212, 0, 0.03);
   position: absolute;
@@ -79,7 +79,7 @@
 }
 
 .article-hero h1 {
-  font-family: "DM Serif Display", serif;
+  font-family: 'DM Serif Display', serif;
   font-size: clamp(2.2rem, 4.5vw, 4rem);
   line-height: 1.1;
   color: var(--white);
@@ -169,7 +169,7 @@
   border: 2px solid var(--gray-2a);
   background: transparent;
   color: var(--gray-mid-8);
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -221,7 +221,7 @@
 
 /* ── ARTICLE BODY ── */
 .article-body {
-  font-family: "Lora", Georgia, serif;
+  font-family: 'Lora', Georgia, serif;
   font-size: 1.08rem;
   font-weight: 400;
   line-height: 1.9;
@@ -244,7 +244,7 @@
 .article-body h4 {
   font-size: 1.1rem;
   margin: 1.5rem 0 0.6rem;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 700;
 }
 
@@ -266,7 +266,7 @@
 }
 
 .article-body code {
-  font-family: "Courier New", monospace;
+  font-family: 'Courier New', monospace;
   font-size: 0.88em;
   background: var(--gray-light-f0);
   padding: 0.15em 0.4em;
@@ -375,7 +375,7 @@
 }
 
 .footer-author-name {
-  font-family: "DM Serif Display", serif;
+  font-family: 'DM Serif Display', serif;
   font-size: 1.2rem;
   color: var(--black);
   text-decoration: none;
@@ -403,7 +403,7 @@
   background: var(--black);
   color: var(--yellow);
   border: 2px solid var(--black);
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -439,7 +439,7 @@
 }
 
 .sidebar-card-title {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 0.95rem;
   letter-spacing: 0.1em;
   color: var(--black);
@@ -461,7 +461,7 @@
 }
 
 .stat-num {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 2rem;
   letter-spacing: 0.05em;
   line-height: 1;

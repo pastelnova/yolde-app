@@ -1,21 +1,11 @@
 @if (articles().length > 0) {
   <div class="pagination">
-    <button
-      class="page-btn"
-      [disabled]="currentPage() === 1"
-      (click)="goToPage(currentPage() - 1)"
-    >
-      &laquo;
-    </button>
+    <button class="page-btn" [disabled]="currentPage() === 1" (click)="goToPage(currentPage() - 1)">&laquo;</button>
     @for (page of getVisiblePages(currentPage(), totalPages()); track $index) {
-      @if (page === "...") {
+      @if (page === '...') {
         <button class="page-btn">...</button>
       } @else {
-        <button
-          class="page-btn"
-          [class.active]="currentPage() === page"
-          (click)="goToPage(page)"
-        >
+        <button class="page-btn" [class.active]="currentPage() === page" (click)="goToPage(page)">
           {{ page }}
         </button>
       }

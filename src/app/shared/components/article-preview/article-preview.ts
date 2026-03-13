@@ -36,9 +36,7 @@ export class ArticlePreview {
     if (this.isLoading()) return;
 
     const wasFavorited = this.isFavorited();
-    const operation$ = wasFavorited
-      ? this.articleService.unlikeArticle(slug)
-      : this.articleService.likeArticle(slug);
+    const operation$ = wasFavorited ? this.articleService.unlikeArticle(slug) : this.articleService.likeArticle(slug);
 
     this.isLoading.set(true);
     this.isFavorited.set(!wasFavorited);

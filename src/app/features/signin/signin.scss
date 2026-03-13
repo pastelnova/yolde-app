@@ -17,8 +17,8 @@
 }
 
 .left-panel::before {
-  content: "YOLDE";
-  font-family: "Bebas Neue", sans-serif;
+  content: 'YOLDE';
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 32vw;
   color: rgba(255, 212, 0, 0.03);
   position: absolute;
@@ -46,7 +46,7 @@
 }
 
 .left-heading {
-  font-family: "DM Serif Display", serif;
+  font-family: 'DM Serif Display', serif;
   font-size: clamp(2.8rem, 4vw, 4.5rem);
   line-height: 1.08;
   color: var(--white);
@@ -76,7 +76,7 @@
 }
 
 .testimonial-quote {
-  font-family: "DM Serif Display", serif;
+  font-family: 'DM Serif Display', serif;
   font-style: italic;
   font-size: 1rem;
   color: hsl(0, 0%, 67%);
@@ -124,7 +124,7 @@
 }
 
 .right-panel::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -155,7 +155,7 @@
 }
 
 .form-title {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 2.8rem;
   letter-spacing: 0.05em;
   color: var(--black);
@@ -216,15 +216,15 @@ label {
   transition: color 0.2s;
 }
 
-input[type="email"],
-input[type="password"],
-input[type="text"] {
+input[type='email'],
+input[type='password'],
+input[type='text'] {
   width: 100%;
   background: var(--white);
   border: 2px solid var(--gray-light);
   color: var(--black);
   padding: 0.85rem 1rem 0.85rem 1rem;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.9rem;
   outline: none;
   transition:
@@ -269,7 +269,7 @@ input.error {
   cursor: pointer;
   color: var(--gray-mid-a);
   font-size: 0.8rem;
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -296,7 +296,7 @@ input.error {
   cursor: pointer;
 }
 
-.checkbox-wrap input[type="checkbox"] {
+.checkbox-wrap input[type='checkbox'] {
   width: 16px;
   height: 16px;
   padding: 0;
@@ -331,7 +331,7 @@ input.error {
   color: var(--yellow);
   border: 2px solid var(--black);
   padding: 1rem;
-  font-family: "Bebas Neue", sans-serif;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 1.3rem;
   letter-spacing: 0.12em;
   cursor: pointer;
@@ -346,7 +346,7 @@ input.error {
 }
 
 .btn-submit::before {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;
@@ -417,7 +417,7 @@ input.error {
   padding: 0.75rem 1rem;
   border: 2px solid var(--gray-light);
   background: var(--white);
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--black);
@@ -468,7 +468,7 @@ input.error {
 }
 
 .success-logo {
-  font-family: "Bebas Neue", sans-serif;
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 6rem;
   color: var(--black);
   letter-spacing: 0.05em;
@@ -476,7 +476,7 @@ input.error {
 }
 
 .success-msg {
-  font-family: "DM Serif Display", serif;
+  font-family: 'DM Serif Display', serif;
   font-style: italic;
   font-size: 1.5rem;
   color: var(--black);

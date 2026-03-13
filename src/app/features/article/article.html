@@ -25,13 +25,8 @@
             >
           </a>
           <div class="author-info">
-            <a class="author-name" href="">{{
-              this.article().author.username
-            }}</a>
-            <div class="author-meta">
-              {{ article().createdAt | date: "mediumDate" }} ·
-              {{ readingTime() }} min read
-            </div>
+            <a class="author-name" href="">{{ this.article().author.username }}</a>
+            <div class="author-meta">{{ article().createdAt | date: 'mediumDate' }} · {{ readingTime() }} min read</div>
           </div>
         </div>
 
@@ -40,18 +35,11 @@
             <a href="" class="btn-action btn-action-edit">
               <span class="material-symbols-outlined"> edit </span>Edit Article
             </a>
-            <button
-              class="btn-action btn-action-delete"
-              onclick="deleteArticle()"
-            >
+            <button class="btn-action btn-action-delete" onclick="deleteArticle()">
               <span class="material-symbols-outlined"> close </span> Delete
             </button>
           } @else {
-            <button
-              class="btn-action"
-              [class.active]="isFollowing()"
-              onclick="toggleFollow()"
-            >
+            <button class="btn-action" [class.active]="isFollowing()" onclick="toggleFollow()">
               @if (isFollowing()) {
                 <span class="material-symbols-outlined filled"> check </span>
                 Following {{ article().author.username }}
@@ -60,15 +48,9 @@
                 {{ article().author.username }}
               }
             </button>
-            <button
-              class="btn-action"
-              [class.active]="isFavorited()"
-              (click)="toggleLike(article().slug)"
-            >
+            <button class="btn-action" [class.active]="isFavorited()" (click)="toggleLike(article().slug)">
               <span class="material-symbols-outlined filled"> favorite </span
-              >{{ isFavorited() ? "Unfavorite" : "Favorite" }} ({{
-                favoritesCount()
-              }})
+              >{{ isFavorited() ? 'Unfavorite' : 'Favorite' }} ({{ favoritesCount() }})
             </button>
           }
         </div>
@@ -93,13 +75,9 @@
           </a>
           <div class="footer-author-info">
             <div class="footer-author-label">Written by</div>
-            <a class="footer-author-name" href="">{{
-              article().author.username
-            }}</a>
+            <a class="footer-author-name" href="">{{ article().author.username }}</a>
             <div class="footer-author-bio">{{ article().author.bio }}</div>
-            <button class="btn-follow">
-              <span class="material-symbols-outlined"> add </span> Follow
-            </button>
+            <button class="btn-follow"><span class="material-symbols-outlined"> add </span> Follow</button>
           </div>
         </div>
       </div>
@@ -111,10 +89,7 @@
     <aside class="article-sidebar">
       <!-- Stats -->
       <div class="sidebar-card">
-        <div class="sidebar-card-title">
-          <span class="material-symbols-outlined icon"> stat_0 </span> Article
-          Stats
-        </div>
+        <div class="sidebar-card-title"><span class="material-symbols-outlined icon"> stat_0 </span> Article Stats</div>
         <div class="stats-row">
           <div class="stat-item">
             <div class="stat-num">{{ favoritesCount() }}</div>
@@ -133,9 +108,7 @@
 
       <!-- Tags -->
       <div class="sidebar-card">
-        <div class="sidebar-card-title">
-          <span class="material-symbols-outlined icon"> stat_0 </span>Tags
-        </div>
+        <div class="sidebar-card-title"><span class="material-symbols-outlined icon"> stat_0 </span>Tags</div>
         <div class="tag-cloud">
           @for (tag of article().tagList; track $index) {
             <span class="tag-pill">{{ tag }}</span>
@@ -153,7 +126,7 @@
           <div>
             <div class="timestamps-label">Published</div>
             <div class="timestamps-value">
-              {{ article().createdAt | date: "mediumDate" }}
+              {{ article().createdAt | date: 'mediumDate' }}
             </div>
           </div>
         </div>

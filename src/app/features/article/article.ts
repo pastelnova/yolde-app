@@ -24,15 +24,10 @@ export class ArticleComponent {
   isFollowing = signal(false);
   isLoading = signal(false);
 
-  private slug = toSignal(
-    this.route.params.pipe(map((params) => params['slug'])),
-    {
-      initialValue: '',
-    },
-  );
-  article = computed(
-    () => this.articleResource.value()?.article ?? ({} as ArticleInterface),
-  );
+  private slug = toSignal(this.route.params.pipe(map((params) => params['slug'])), {
+    initialValue: '',
+  });
+  article = computed(() => this.articleResource.value()?.article ?? ({} as ArticleInterface));
 
   articleResource = this.articleService.getArticleBySlug(this.slug);
 
@@ -57,9 +52,7 @@ export class ArticleComponent {
     if (this.isLoading()) return;
 
     const wasFavorited = this.isFavorited();
-    const operation$ = wasFavorited
-      ? this.articleService.unlikeArticle(slug)
-      : this.articleService.likeArticle(slug);
+    const operation$ = wasFavorited ? this.articleService.unlikeArticle(slug) : this.articleService.likeArticle(slug);
 
     this.isLoading.set(true);
     this.isFavorited.set(!wasFavorited);
