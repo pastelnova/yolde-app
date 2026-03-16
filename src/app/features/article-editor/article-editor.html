@@ -1,1 +1,166 @@
-<p>article-editor works!</p>
+<div class="page-wrap">
+  <!-- MAIN EDITOR -->
+  <main>
+    <div class="page-header">
+      <div class="page-title-group">
+        <div class="page-tag">New Article</div>
+        <div class="page-title">New <span>Story</span></div>
+      </div>
+    </div>
+
+    <form [formGroup]="articleForm" (ngSubmit)="onSubmit()">
+      <!-- TITLE -->
+      <div class="editor-form">
+        <div class="form-group">
+          <label class="label-required" for="articleTitle">Article Title</label>
+          <div class="input-wrap">
+            <input
+              type="text"
+              formControlName="title"
+              id="articleTitle"
+              class="title-input"
+              placeholder="Give your story a headline…"
+            />
+          </div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="form-group">
+          <label class="label-required" for="articleDesc">Description</label>
+          <div class="input-wrap">
+            <input
+              type="text"
+              formControlName="description"
+              id="articleDesc"
+              class="desc-input"
+              placeholder="A short, punchy summary of what this is about…"
+            />
+          </div>
+        </div>
+
+        <!-- BODY -->
+        <div class="form-group">
+          <label class="label-required" for="articleBody">Article Body</label>
+          <div class="body-wrap">
+            <textarea formControlName="body" id="articleBody" placeholder="Start writing your story…"></textarea>
+          </div>
+          <div class="char-count">{{ charCount() }} characters</div>
+        </div>
+
+        <!-- TAGS -->
+        <div class="form-group">
+          <label for="tagInput">Tags <span class="label-optional">(optional)</span></label>
+          <div class="tag-input-wrap">
+            <div class="tag-chips">
+              @for (tag of tagList(); track tag) {
+                <span class="tag-chip"
+                  >{{ tag }}<button type="button" class="tag-remove" (click)="removeTag(tag)">✕</button></span
+                >
+              }
+            </div>
+            <input
+              type="text"
+              id="tagInput"
+              [formControl]="tagField"
+              placeholder="Add a tag and press Enter…"
+              (keydown)="onTagKeydown($event)"
+              autocomplete="off"
+              autocapitalize="none"
+            />
+          </div>
+          <div class="tag-hint">Press <strong>Enter</strong> or <strong>,</strong> to add a tag. Max 5 tags.</div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="form-actions">
+          <button type="submit" class="btn-publish" [disabled]="!articleForm.valid">
+            <span>Publish Story</span>
+            <span class="arrow">&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <!-- LIVE PREVIEW -->
+    <div class="preview-card">
+      <div class="preview-label">Live Preview</div>
+      <div class="preview-title">
+        @if (articleForm.get('title')?.value) {
+          {{ articleForm.get('title')?.value }}
+        } @else {
+          <em class="preview-placeholder">Your title will appear here…</em>
+        }
+      </div>
+      <div class="preview-desc">
+        @if (articleForm.get('description')?.value) {
+          {{ articleForm.get('description')?.value }}
+        } @else {
+          Your description will appear here…
+        }
+      </div>
+      <div class="preview-meta">
+        <div class="preview-avatar">
+          {{ authorInitials() }}
+        </div>
+        <div>
+          <div class="preview-author-name">{{ authorName() }}</div>
+          <div class="preview-date">{{ today | date: 'mediumDate' }}</div>
+        </div>
+      </div>
+      <div class="preview-tags">
+        @for (tag of tagList(); track tag) {
+          <span class="preview-tag">{{ tag }}</span>
+        }
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-title"><span class="material-symbols-outlined icon"> stat_0 </span> Writing Stats</div>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">{{ wordCount() }}</div>
+          <div class="stat-label">Words</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">{{ readMins() }}</div>
+          <div class="stat-label">Min Read</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">{{ paraCount() }}</div>
+          <div class="stat-label">Paragraphs</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">{{ tagList().length }}</div>
+          <div class="stat-label">Tags</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIPS -->
+    <div class="sidebar-card">
+      <div class="sidebar-card-title"><span class="material-symbols-outlined icon"> stat_0 </span> Writing Tips</div>
+      <div class="tips-list">
+        <div class="tip">
+          <div class="tip-num">1</div>
+          <div class="tip-text">A strong headline is the #1 driver of clicks. Spend time on it.</div>
+        </div>
+        <div class="tip">
+          <div class="tip-num">2</div>
+          <div class="tip-text">Keep your description under 160 characters for best display.</div>
+        </div>
+        <div class="tip">
+          <div class="tip-num">3</div>
+          <div class="tip-text">Use headers, short paragraphs, and code blocks to improve readability.</div>
+        </div>
+        <div class="tip">
+          <div class="tip-num">4</div>
+          <div class="tip-text">2-3 focused tags help readers discover your article.</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
