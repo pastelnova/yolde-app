@@ -1,11 +1,12 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { authStore } from '../../core/auth/store/auth.store';
 import { DatePipe } from '@angular/common';
 import { ArticleFormInterface } from '../../shared/models/articleForm.interface';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ArticleService } from '../../shared/services/article.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-article-editor',
@@ -16,8 +17,16 @@ import { toSignal } from '@angular/core/rxjs-interop';
 export class ArticleEditor {
   private articleService = inject(ArticleService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   store = inject(authStore);
   today = new Date();
+
+  slug = toSignal(this.route.params.pipe(map((param) => (param['slug'] as string) ?? '')), {
+    initialValue: '',
+  });
+  isEditMode = computed(() => !!this.slug());
+
+  private articleResource = this.articleService.getArticleBySlug(this.slug);
 
   tagList = signal<string[]>([]);
 
@@ -57,6 +66,20 @@ export class ArticleEditor {
     return val ? val.split(/\n\s*\n/).filter((p) => p.trim()).length : 0;
   });
   readMins = computed(() => Math.max(1, Math.ceil(this.wordCount() / 200)));
+
+  constructor() {
+    effect(() => {
+      const article = this.articleResource.value()?.article;
+      if (article) {
+        this.articleForm.patchValue({
+          title: article.title,
+          description: article.description,
+          body: article.body,
+        });
+        this.tagList.set(article.tagList);
+      }
+    });
+  }
 
   onTagKeydown(event: KeyboardEvent): void {
     const inputValue = this.tagField.value ?? '';
@@ -101,12 +124,16 @@ export class ArticleEditor {
         tagList: this.tagList(),
       };
 
-      this.articleService.createArticle(formData).subscribe({
+      const request$ = this.isEditMode()
+        ? this.articleService.updateArticle(this.slug(), formData)
+        : this.articleService.createArticle(formData);
+
+      request$.subscribe({
         next: (article) => {
           this.router.navigate(['/article/', article.slug]);
         },
         error: (error) => {
-          console.error('Error creating article:', error);
+          console.error('Error saving article:', error);
         },
       });
     }

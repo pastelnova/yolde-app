@@ -1,7 +1,7 @@
 import { DatePipe, UpperCasePipe } from '@angular/common';
 import { Component, computed, effect, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 import { authStore } from '../../core/auth/store/auth.store';
 import { ArticleInterface } from '../../shared/models/article.interface';
@@ -9,7 +9,7 @@ import { ArticleService } from '../../shared/services/article.service';
 
 @Component({
   selector: 'app-article',
-  imports: [UpperCasePipe, DatePipe],
+  imports: [UpperCasePipe, DatePipe, RouterLink],
   templateUrl: './article.html',
   styleUrl: './article.scss',
 })

@@ -32,7 +32,7 @@
 
         <div class="hero-actions">
           @if (article().author.username === store.currentUser()?.username) {
-            <a href="" class="btn-action btn-action-edit">
+            <a href="" class="btn-action btn-action-edit" [routerLink]="['/article', article().slug, 'edit']">
               <span class="material-symbols-outlined"> edit </span>Edit Article
             </a>
             <button class="btn-action btn-action-delete" onclick="deleteArticle()">

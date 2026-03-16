@@ -3,8 +3,8 @@
   <main>
     <div class="page-header">
       <div class="page-title-group">
-        <div class="page-tag">New Article</div>
-        <div class="page-title">New <span>Story</span></div>
+        <div class="page-tag">{{ isEditMode() ? 'Edit Article' : 'New Article' }}</div>
+        <div class="page-title">{{ isEditMode() ? 'Edit' : 'New' }} <span>Story</span></div>
       </div>
     </div>
 
@@ -74,7 +74,7 @@
         <!-- ACTIONS -->
         <div class="form-actions">
           <button type="submit" class="btn-publish" [disabled]="!articleForm.valid">
-            <span>Publish Story</span>
+            <span>{{ isEditMode() ? 'Update Story' : 'Publish Story' }}</span>
             <span class="arrow">&rarr;</span>
           </button>
         </div>

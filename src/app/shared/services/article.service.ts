@@ -43,6 +43,12 @@ export class ArticleService {
       .pipe(map((data) => data.article));
   }
 
+  updateArticle(slug: string, article: Partial<ArticleInterface>): Observable<ArticleInterface> {
+    return this.http
+      .put<{ article: ArticleInterface }>(`/articles/${slug}`, { article: article })
+      .pipe(map((data) => data.article));
+  }
+
   getArticleBySlug(slug: Signal<string>) {
     return httpResource<{ article: ArticleInterface }>(() => (slug() ? `/articles/${slug()}` : undefined));
   }
