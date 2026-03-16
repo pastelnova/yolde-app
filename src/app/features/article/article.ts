@@ -111,4 +111,10 @@ export class ArticleComponent {
       },
     });
   }
+
+  onTagClick(tag: string) {
+    this.router.navigate(['/'], {
+      queryParams: { tag },
+    });
+  }
 }

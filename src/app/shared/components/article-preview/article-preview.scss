@@ -117,6 +117,9 @@
 }
 
 .tag-chip {
+  appearance: none;
+  background: transparent;
+  font-family: inherit;
   font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.08em;

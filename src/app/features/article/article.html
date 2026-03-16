@@ -9,7 +9,7 @@
       </div>
       <div class="hero-tags">
         @for (tag of article().tagList; track $index) {
-          <span class="hero-tag-chip">{{ tag }}</span>
+          <button type="button" class="hero-tag-chip" (click)="onTagClick(tag)">{{ tag }}</button>
         }
       </div>
 
@@ -138,7 +138,7 @@
         <div class="sidebar-card-title"><span class="material-symbols-outlined icon"> stat_0 </span>Tags</div>
         <div class="tag-cloud">
           @for (tag of article().tagList; track $index) {
-            <span class="tag-pill">{{ tag }}</span>
+            <button type="button" class="tag-pill" (click)="onTagClick(tag)">{{ tag }}</button>
           }
         </div>
       </div>

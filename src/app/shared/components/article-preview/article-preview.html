@@ -11,7 +11,7 @@
     <div class="article-desc">{{ article().description }}</div>
     <div class="article-footer">
       @for (tag of article().tagList; track tag) {
-        <span class="tag-chip">{{ tag }}</span>
+        <button type="button" class="tag-chip" (click)="onTagClick(tag)">{{ tag }}</button>
       }
       <a class="read-more" [routerLink]="['/article', article().slug]">
         Read more

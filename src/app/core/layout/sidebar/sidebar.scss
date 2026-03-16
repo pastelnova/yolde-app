@@ -37,7 +37,10 @@
 }
 
 .tag-chip {
+  appearance: none;
+  background: transparent;
   font-size: 0.65rem;
+  font-family: inherit;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;

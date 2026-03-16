@@ -34,3 +34,64 @@ main {
   color: var(--black);
   background: var(--gray-light);
 }
+
+.feed-tab-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 800;
+}
+
+.feed-tab-close {
+  appearance: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 0;
+  color: var(--yellow);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.feed-tab-close .material-symbols-outlined {
+  font-size: 0.92rem;
+}
+
+.feed-tab-close:hover,
+.feed-tab-close:focus-visible {
+  color: var(--red-mid);
+  outline: none;
+}
+
+.feed-filter-label {
+  margin-top: -1rem;
+  margin-bottom: 1.4rem;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--yellow);
+  background: var(--gray-light-f5);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-mid-6);
+}
+
+.feed-filter-label strong {
+  color: var(--black);
+}
+
+.feed-empty-state {
+  min-height: 240px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  border: 2px dashed var(--gray-light);
+  background: var(--gray-light-f5);
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.15rem;
+  color: var(--gray-mid-6);
+}

@@ -5,7 +5,7 @@
     <div class="tag-cloud">
       @if (tags()) {
         @for (tag of tags(); track tag) {
-          <span class="tag-chip">{{ tag }}</span>
+          <button type="button" class="tag-chip" (click)="onTagClick(tag)">{{ tag }}</button>
         }
       }
     </div>

@@ -52,4 +52,10 @@ export class ArticlePreview {
       },
     });
   }
+
+  onTagClick(tag: string) {
+    this.router.navigate(['/'], {
+      queryParams: { tag },
+    });
+  }
 }

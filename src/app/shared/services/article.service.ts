@@ -10,10 +10,11 @@ export class ArticleService {
   private http = inject(HttpClient);
 
   type = signal<string>('global');
+  activeTag = signal<string>('');
   pageSize = signal(3);
 
   currentPage = linkedSignal({
-    source: () => this.type(),
+    source: () => [this.type(), this.activeTag()],
     computation: () => 1,
   });
 
@@ -31,6 +32,10 @@ export class ArticleService {
           return `/articles?offset=${offset}&limit=${limit}`;
         case 'feed':
           return `/articles/feed?offset=${offset}&limit=${limit}`;
+        case 'tag': {
+          const tag = this.activeTag().trim();
+          return tag ? `/articles?tag=${encodeURIComponent(tag)}&offset=${offset}&limit=${limit}` : undefined;
+        }
         default:
           return undefined;
       }

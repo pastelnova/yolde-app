@@ -10,19 +10,48 @@
     @if (store.isAuthenticated()) {
       <button
         class="feed-tab"
-        [ngClass]="{ active: this.articleService.type() !== 'global' }"
+        [ngClass]="{ active: this.articleService.type() === 'feed' }"
         (click)="getPersonalFeedArticles()"
       >
         My Feed
       </button>
     }
-  </div>
-
-  <div class="article-list" id="articleList">
-    @for (article of articles(); track article.slug) {
-      <app-article-preview [article]="article"></app-article-preview>
+    @if (isTagMode()) {
+      <button class="feed-tab active feed-tab-tag" type="button">
+        <span># {{ activeTag() }}</span>
+        <button
+          type="button"
+          class="feed-tab-close"
+          aria-label="Clear tag filter"
+          (click)="clearTag(); $event.stopPropagation()"
+        >
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </button>
     }
   </div>
+
+  @if (isTagMode()) {
+    <div class="feed-filter-label">
+      Showing articles tagged <strong>#{{ activeTag() }}</strong> · {{ articlesCount() }} results
+    </div>
+  }
+
+  @if (!isLoading() && articles().length === 0) {
+    <div class="feed-empty-state">
+      @if (isTagMode()) {
+        No articles found for #{{ activeTag() }} yet.
+      } @else {
+        No articles found yet.
+      }
+    </div>
+  } @else {
+    <div class="article-list" id="articleList">
+      @for (article of articles(); track article.slug) {
+        <app-article-preview [article]="article"></app-article-preview>
+      }
+    </div>
+  }
 
   <app-pagination [articles]="articles()" [isLoading]="isLoading()" [articlesCount]="articlesCount()"></app-pagination>
 </main>
