@@ -44,7 +44,13 @@
               <span class="material-symbols-outlined"> close </span> Delete
             </button>
           } @else {
-            <button class="btn-action" [class.active]="isFollowing()" onclick="toggleFollow()">
+            <button
+              class="btn-action"
+              type="button"
+              [class.active]="isFollowing()"
+              [disabled]="isFollowLoading()"
+              (click)="toggleFollow(article().author.username)"
+            >
               @if (isFollowing()) {
                 <span class="material-symbols-outlined filled"> check </span>
                 Following {{ article().author.username }}
@@ -82,7 +88,23 @@
             <div class="footer-author-label">Written by</div>
             <a class="footer-author-name" href="">{{ article().author.username }}</a>
             <div class="footer-author-bio">{{ article().author.bio }}</div>
-            <button class="btn-follow"><span class="material-symbols-outlined"> add </span> Follow</button>
+            @if (article().author.username !== store.currentUser()?.username) {
+              <button
+                class="btn-follow"
+                type="button"
+                [class.active]="isFollowing()"
+                [disabled]="isFollowLoading()"
+                (click)="toggleFollow(article().author.username)"
+              >
+                @if (isFollowing()) {
+                  <span class="material-symbols-outlined filled"> check </span>
+                  Following
+                } @else {
+                  <span class="material-symbols-outlined"> add </span>
+                  Follow
+                }
+              </button>
+            }
           </div>
         </div>
       </div>

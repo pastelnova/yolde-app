@@ -78,6 +78,14 @@ export class ArticleService {
       .pipe(map((data) => data.article));
   }
 
+  followAuthor(username: string): Observable<void> {
+    return this.http.post<void>(`/profiles/${username}/follow`, {});
+  }
+
+  unfollowAuthor(username: string): Observable<void> {
+    return this.http.delete<void>(`/profiles/${username}/follow`);
+  }
+
   getEditorsPickArticle() {
     return httpResource<ArticleInterface>(() => `/articles?limit=20&offset=0`, {
       parse: (response) => {

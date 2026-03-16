@@ -23,6 +23,7 @@ export class ArticleComponent {
   favoritesCount = signal(0);
   isFollowing = signal(false);
   isLoading = signal(false);
+  isFollowLoading = signal(false);
   isDeleting = signal(false);
 
   private slug = toSignal(this.route.params.pipe(map((params) => params['slug'])), {
@@ -66,6 +67,32 @@ export class ArticleComponent {
       error: () => {
         this.isFavorited.set(wasFavorited);
         this.isLoading.set(false);
+      },
+    });
+  }
+
+  toggleFollow(username: string) {
+    if (!this.store.currentUser()) {
+      this.router.navigate(['/signin']);
+      return;
+    }
+    if (this.isFollowLoading()) return;
+
+    const wasFollowing = this.isFollowing();
+    const operation$ = wasFollowing
+      ? this.articleService.unfollowAuthor(username)
+      : this.articleService.followAuthor(username);
+
+    this.isFollowLoading.set(true);
+    this.isFollowing.set(!wasFollowing);
+
+    operation$.subscribe({
+      next: () => {
+        this.isFollowLoading.set(false);
+      },
+      error: () => {
+        this.isFollowing.set(wasFollowing);
+        this.isFollowLoading.set(false);
       },
     });
   }
