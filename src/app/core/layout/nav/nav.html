@@ -30,13 +30,13 @@
             [attr.aria-expanded]="isDropdownOpen()"
             aria-label="Open user menu"
           >
-            AH
+            {{ authorInitials() }}
           </button>
           <div class="nav-dropdown" [class.open]="isDropdownOpen()">
             <!-- USER INFO -->
             <div class="dropdown-header">
-              <div class="dropdown-name">Alex Halex</div>
-              <div class="dropdown-handle">@alexhalex · 1.2k followers</div>
+              <div class="dropdown-name">{{ authorName() }}</div>
+              <div class="dropdown-handle">{{ authorEmail() }}</div>
             </div>
 
             <!-- MENU ITEMS -->

@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, ViewChild, inject, signal } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, computed, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { authStore } from '../../auth/store/auth.store';
 import { AuthService } from '../../auth/services/auth.service';
@@ -14,6 +14,13 @@ export class Nav {
   authService = inject(AuthService);
 
   protected isDropdownOpen = signal(false);
+
+  authorName = computed(() => this.store.currentUser()?.username ?? 'You');
+  authorInitials = computed(() => {
+    const username = this.store.currentUser()?.username ?? '';
+    return username.slice(0, 2).toUpperCase() || 'ME';
+  });
+  authorEmail = computed(() => this.store.currentUser()?.email ?? '');
 
   @ViewChild('avatarWrap') private avatarWrap?: ElementRef<HTMLElement>;
 
