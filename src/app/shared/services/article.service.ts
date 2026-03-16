@@ -49,6 +49,10 @@ export class ArticleService {
       .pipe(map((data) => data.article));
   }
 
+  deleteArticle(slug: string): Observable<void> {
+    return this.http.delete<void>(`/articles/${slug}`);
+  }
+
   getArticleBySlug(slug: Signal<string>) {
     return httpResource<{ article: ArticleInterface }>(() => (slug() ? `/articles/${slug()}` : undefined));
   }

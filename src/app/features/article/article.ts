@@ -23,6 +23,7 @@ export class ArticleComponent {
   favoritesCount = signal(0);
   isFollowing = signal(false);
   isLoading = signal(false);
+  isDeleting = signal(false);
 
   private slug = toSignal(this.route.params.pipe(map((params) => params['slug'])), {
     initialValue: '',
@@ -65,6 +66,21 @@ export class ArticleComponent {
       error: () => {
         this.isFavorited.set(wasFavorited);
         this.isLoading.set(false);
+      },
+    });
+  }
+
+  deleteArticle(slug: string) {
+    if (!this.store.currentUser() || this.isDeleting()) return;
+
+    this.isDeleting.set(true);
+    this.articleService.deleteArticle(slug).subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+      error: (error) => {
+        console.error('Error deleting article:', error);
+        this.isDeleting.set(false);
       },
     });
   }
