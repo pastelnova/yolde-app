@@ -15,7 +15,7 @@ export class Nav {
 
   protected isDropdownOpen = signal(false);
 
-  authorName = computed(() => this.store.currentUser()?.username ?? 'You');
+  authorUsername = computed(() => this.store.currentUser()?.username ?? 'You');
   authorInitials = computed(() => {
     const username = this.store.currentUser()?.username ?? '';
     return username.slice(0, 2).toUpperCase() || 'ME';

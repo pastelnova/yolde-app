@@ -52,12 +52,47 @@
   font-weight: 700;
   color: var(--black);
   flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--yellow);
+  line-height: 1;
+  font-family: inherit;
+}
+
+.article-avatar:hover,
+.article-avatar:active,
+.article-avatar:focus {
+  outline: none;
+  background-color: var(--black);
+  color: var(--yellow);
 }
 
 .article-author {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--black);
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  line-height: 1;
+  font-family: inherit;
+}
+
+.article-author:hover,
+.article-author:active,
+.article-author:focus {
+  outline: none;
+  color: var(--yellow);
 }
 
 .article-date {

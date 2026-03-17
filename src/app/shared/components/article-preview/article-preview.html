@@ -1,10 +1,12 @@
 <div class="article-item">
   <div>
     <div class="article-item-meta">
-      <div class="article-avatar">
+      <button type="button" class="article-avatar" (click)="onAuthorClick(article().author.username)">
         {{ article().author.username.charAt(0) | uppercase }}{{ article().author.username.charAt(1) | uppercase }}
-      </div>
-      <span class="article-author">{{ article().author.username }}</span>
+      </button>
+      <button type="button" class="article-author" (click)="onAuthorClick(article().author.username)">
+        {{ article().author.username }}
+      </button>
       <span class="article-date">{{ article().createdAt | date: 'mediumDate' }}</span>
     </div>
     <div class="article-title">{{ article().title }}</div>

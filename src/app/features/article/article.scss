@@ -78,6 +78,7 @@
 
 .hero-tag-chip:hover {
   background: var(--yellow);
+  color: var(--white);
 }
 
 .article-hero h1 {
@@ -128,6 +129,11 @@
   flex-shrink: 0;
   overflow: hidden;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.author-avatar:hover {
+  color: var(--white);
 }
 
 .author-avatar img {
@@ -143,6 +149,7 @@
   color: var(--white);
   text-decoration: none;
   transition: color 0.15s;
+  cursor: pointer;
 }
 
 .author-name:hover {
@@ -355,6 +362,12 @@
   flex-shrink: 0;
   overflow: hidden;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.footer-avatar:hover {
+  background-color: var(--black);
+  color: var(--yellow);
 }
 
 .footer-avatar img {
@@ -384,6 +397,7 @@
   display: block;
   margin-bottom: 0.4rem;
   transition: color 0.15s;
+  cursor: pointer;
 }
 
 .footer-author-name:hover {

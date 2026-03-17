@@ -29,4 +29,9 @@ export const routes: Routes = [
     loadComponent: () => import('./features/article-editor/article-editor').then((m) => m.ArticleEditor),
     canActivate: [authGuard],
   },
+  {
+    path: 'profile/:username',
+    loadComponent: () => import('./features/profile/profile').then((m) => m.ProfileComponent),
+    canActivate: [authGuard],
+  },
 ];

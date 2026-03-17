@@ -18,14 +18,16 @@
 
       <div class="hero-author-row">
         <div class="hero-author">
-          <a class="author-avatar" href="">
+          <a class="author-avatar" [routerLink]="['/profile', article().author.username]">
             <span>
               {{ article().author.username.charAt(0) | uppercase
               }}{{ article().author.username.charAt(1) | uppercase }}</span
             >
           </a>
           <div class="author-info">
-            <a class="author-name" href="">{{ this.article().author.username }}</a>
+            <a class="author-name" [routerLink]="['/profile', article().author.username]">{{
+              this.article().author.username
+            }}</a>
             <div class="author-meta">{{ article().createdAt | date: 'mediumDate' }} · {{ readingTime() }} min read</div>
           </div>
         </div>
@@ -78,7 +80,7 @@
       <!-- AUTHOR CARD -->
       <div class="article-footer">
         <div class="footer-author-card">
-          <a class="footer-avatar" href="">
+          <a class="footer-avatar" [routerLink]="['/profile', article().author.username]">
             <span id="footerAvatarInitials"
               >{{ article().author.username.charAt(0) | uppercase
               }}{{ article().author.username.charAt(1) | uppercase }}</span
@@ -86,7 +88,9 @@
           </a>
           <div class="footer-author-info">
             <div class="footer-author-label">Written by</div>
-            <a class="footer-author-name" href="">{{ article().author.username }}</a>
+            <a class="footer-author-name" [routerLink]="['/profile', article().author.username]">{{
+              article().author.username
+            }}</a>
             <div class="footer-author-bio">{{ article().author.bio }}</div>
             @if (article().author.username !== store.currentUser()?.username) {
               <button

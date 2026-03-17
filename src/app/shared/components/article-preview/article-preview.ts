@@ -58,4 +58,8 @@ export class ArticlePreview {
       queryParams: { tag },
     });
   }
+
+  onAuthorClick(username: string) {
+    this.router.navigate(['/profile', username]);
+  }
 }

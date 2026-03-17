@@ -35,14 +35,14 @@
           <div class="nav-dropdown" [class.open]="isDropdownOpen()">
             <!-- USER INFO -->
             <div class="dropdown-header">
-              <div class="dropdown-name">{{ authorName() }}</div>
+              <div class="dropdown-name">{{ authorUsername() }}</div>
               <div class="dropdown-handle">{{ authorEmail() }}</div>
             </div>
 
             <!-- MENU ITEMS -->
             <ul class="dropdown-links">
               <li>
-                <a href="">
+                <a href="" [routerLink]="['/profile', authorUsername()]">
                   <span class="material-symbols-outlined"> account_circle </span>
                   Profile
                 </a>
