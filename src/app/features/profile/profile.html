@@ -1,1 +1,102 @@
-<p>profile works!</p>
+<!-- PROFILE HEADER -->
+<div class="profile-header" [attr.data-username]="profile().username">
+  <div class="profile-inner">
+    <div class="profile-top">
+      <!-- AVATAR -->
+      <div class="profile-avatar-lg">
+        {{ profile().username.charAt(0) | uppercase }}{{ profile().username.charAt(1) | uppercase }}
+      </div>
+
+      <!-- IDENTITY -->
+      <div class="profile-identity">
+        <h1 class="profile-name">
+          {{ profile().username }}
+        </h1>
+      </div>
+
+      <!-- ACTIONS -->
+      <div class="profile-actions">
+        @if (profile().username === store.currentUser()?.username) {
+          <a class="btn-edit-profile"><span class="material-symbols-outlined"> settings </span> Edit Profile</a>
+        } @else {
+          <button
+            class="btn-follow"
+            type="button"
+            [class.active]="isFollowing()"
+            [disabled]="isFollowLoading()"
+            (click)="toggleFollow(profile().username)"
+          >
+            @if (isFollowing()) {
+              <span class="material-symbols-outlined filled"> check </span>
+              Following
+            } @else {
+              <span class="material-symbols-outlined"> add </span>
+              Follow
+            }
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- BIO -->
+    <p class="profile-bio">
+      {{ profile().bio || 'This user has no bio yet.' }}
+    </p>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="profile-tabs">
+  <div class="profile-tab-inner">
+    <button
+      class="profile-tab"
+      [ngClass]="{ active: this.articleService.type() === 'author' }"
+      (click)="getMyArticles()"
+    >
+      My Articles
+    </button>
+    <button
+      class="profile-tab"
+      [ngClass]="{ active: this.articleService.type() === 'favorited' }"
+      (click)="getFavoritedArticles()"
+    >
+      Favourited
+    </button>
+  </div>
+</div>
+
+<!-- BODY -->
+<div class="profile-body">
+  <!-- MAIN COLUMN -->
+  <main>
+    <div class="tab-panel active">
+      @if (!isLoading() && articles().length === 0) {
+        <div class="empty-state">No articles found yet.</div>
+      } @else {
+        <div class="article-list">
+          @for (article of articles(); track article.slug) {
+            <app-article-preview [article]="article"></app-article-preview>
+          }
+        </div>
+      }
+
+      <app-pagination
+        [articles]="articles()"
+        [isLoading]="isLoading()"
+        [articlesCount]="articlesCount()"
+      ></app-pagination>
+    </div>
+  </main>
+  <!-- SIDEBAR -->
+  <aside>
+    <!-- ABOUT -->
+    <div class="sidebar-section">
+      <div class="sidebar-card">
+        <div class="sidebar-card-title"><span class="material-symbols-outlined icon"> stat_0 </span>About</div>
+        <p class="sidebar-bio">
+          {{ profile().bio || 'This user has no bio yet.' }}
+        </p>
+      </div>
+    </div>
+  </aside>
+</div>

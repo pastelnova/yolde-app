@@ -11,6 +11,7 @@ export class ArticleService {
 
   type = signal<string>('global');
   activeTag = signal<string>('');
+  activeAuthor = signal<string>('');
   pageSize = signal(3);
 
   currentPage = linkedSignal({
@@ -36,6 +37,16 @@ export class ArticleService {
           const tag = this.activeTag().trim();
           return tag ? `/articles?tag=${encodeURIComponent(tag)}&offset=${offset}&limit=${limit}` : undefined;
         }
+        case 'author': {
+          const author = this.activeAuthor().trim();
+          return author ? `/articles?author=${encodeURIComponent(author)}&offset=${offset}&limit=${limit}` : undefined;
+        }
+        case 'favorited': {
+          const author = this.activeAuthor().trim();
+          return author
+            ? `/articles?favorited=${encodeURIComponent(author)}&offset=${offset}&limit=${limit}`
+            : undefined;
+        }
         default:
           return undefined;
       }
@@ -60,6 +71,16 @@ export class ArticleService {
 
   getArticleBySlug(slug: Signal<string>) {
     return httpResource<{ article: ArticleInterface }>(() => (slug() ? `/articles/${slug()}` : undefined));
+  }
+
+  getArticlesCount(author: Signal<string>, queryParam: 'author' | 'favorited') {
+    return httpResource<number>(
+      () => {
+        const username = author().trim();
+        return username ? `/articles?${queryParam}=${encodeURIComponent(username)}&limit=1&offset=0` : undefined;
+      },
+      { parse: (r) => (r as { articlesCount: number }).articlesCount ?? 0 },
+    );
   }
 
   getArticleTitles() {
