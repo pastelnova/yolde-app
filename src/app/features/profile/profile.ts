@@ -3,7 +3,7 @@ import { Component, computed, effect, inject, signal } from '@angular/core';
 import { ArticleService } from '../../shared/services/article.service';
 import { ProfileService } from '../../shared/services/profile.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 import { ProfileInterface } from '../../shared/models/profile.interface';
 import { authStore } from '../../core/auth/store/auth.store';
@@ -12,7 +12,7 @@ import { Pagination } from '../../shared/components/pagination/pagination';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, UpperCasePipe, ArticlePreview, Pagination],
+  imports: [CommonModule, UpperCasePipe, ArticlePreview, Pagination, RouterLink],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })

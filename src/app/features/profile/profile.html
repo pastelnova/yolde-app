@@ -17,7 +17,9 @@
       <!-- ACTIONS -->
       <div class="profile-actions">
         @if (profile().username === store.currentUser()?.username) {
-          <a class="btn-edit-profile"><span class="material-symbols-outlined"> settings </span> Edit Profile</a>
+          <a class="btn-edit-profile" [routerLink]="['/profile', profile().username, 'edit']">
+            <span class="material-symbols-outlined"> settings </span> Edit Profile
+          </a>
         } @else {
           <button
             class="btn-follow"
