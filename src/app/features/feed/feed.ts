@@ -7,11 +7,12 @@ import { authStore } from '../../core/auth/store/auth.store';
 import { ArticlePreview } from '../../shared/components/article-preview/article-preview';
 import { Pagination } from '../../shared/components/pagination/pagination';
 import { ArticleService } from '../../shared/services/article.service';
+import { LoadingSpinner } from '../../shared/components/loading-spinner/loading-spinner';
 import { map } from 'rxjs';
 
 @Component({
   selector: 'app-feed',
-  imports: [CommonModule, ArticlePreview, RouterModule, Pagination],
+  imports: [CommonModule, ArticlePreview, RouterModule, Pagination, LoadingSpinner],
   templateUrl: './feed.html',
   styleUrl: './feed.scss',
 })

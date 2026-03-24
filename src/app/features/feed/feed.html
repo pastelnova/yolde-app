@@ -37,7 +37,9 @@
     </div>
   }
 
-  @if (!isLoading() && articles().length === 0) {
+  @if (isLoading()) {
+    <app-loading-spinner />
+  } @else if (!isLoading() && articles().length === 0) {
     <div class="feed-empty-state">
       @if (isTagMode()) {
         No articles found for #{{ activeTag() }} yet.

@@ -72,7 +72,9 @@
   <!-- MAIN COLUMN -->
   <main>
     <div class="tab-panel active">
-      @if (!isLoading() && articles().length === 0) {
+      @if (isLoading()) {
+        <app-loading-spinner />
+      } @else if (!isLoading() && articles().length === 0) {
         <div class="empty-state">No articles found yet.</div>
       } @else {
         <div class="article-list">

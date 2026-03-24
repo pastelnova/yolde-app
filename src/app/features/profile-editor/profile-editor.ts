@@ -7,10 +7,11 @@ import { map } from 'rxjs';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { authStore } from '../../core/auth/store/auth.store';
 import { AuthService } from '../../core/auth/services/auth.service';
+import { LoadingSpinner } from '../../shared/components/loading-spinner/loading-spinner';
 
 @Component({
   selector: 'app-profile-editor',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, LoadingSpinner],
   templateUrl: './profile-editor.html',
   styleUrl: './profile-editor.scss',
 })
@@ -23,8 +24,9 @@ export class ProfileEditor {
 
   private username = toSignal(this.route.params.pipe(map((params) => params['username'])), { initialValue: '' });
 
-  profile = computed(() => this.profileResource.value()?.profile ?? ({} as ProfileInterface));
   profileResource = this.profileService.getProfile(this.username);
+  isLoading = computed(() => this.profileResource.isLoading());
+  profile = computed(() => this.profileResource.value()?.profile ?? ({} as ProfileInterface));
 
   profileForm = new FormGroup({
     image: new FormControl(''),

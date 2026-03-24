@@ -6,10 +6,11 @@ import { map } from 'rxjs';
 import { authStore } from '../../core/auth/store/auth.store';
 import { ArticleInterface } from '../../shared/models/article.interface';
 import { ArticleService } from '../../shared/services/article.service';
+import { LoadingSpinner } from '../../shared/components/loading-spinner/loading-spinner';
 
 @Component({
   selector: 'app-article',
-  imports: [UpperCasePipe, DatePipe, RouterLink],
+  imports: [UpperCasePipe, DatePipe, RouterLink, LoadingSpinner],
   templateUrl: './article.html',
   styleUrl: './article.scss',
 })
@@ -40,9 +41,11 @@ export class ArticleComponent {
 
   constructor() {
     effect(() => {
-      this.isFavorited.set(this.article().favorited);
-      this.favoritesCount.set(this.article().favoritesCount);
-      this.isFollowing.set(this.article().author.following);
+      const item = this.article();
+      if (!item.author) return;
+      this.isFavorited.set(item.favorited);
+      this.favoritesCount.set(item.favoritesCount);
+      this.isFollowing.set(item.author.following);
     });
   }
 

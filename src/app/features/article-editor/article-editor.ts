@@ -4,13 +4,14 @@ import { DatePipe } from '@angular/common';
 import { ArticleFormInterface } from '../../shared/models/articleForm.interface';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ArticleService } from '../../shared/services/article.service';
+import { LoadingSpinner } from '../../shared/components/loading-spinner/loading-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 
 @Component({
   selector: 'app-article-editor',
-  imports: [ReactiveFormsModule, DatePipe],
+  imports: [ReactiveFormsModule, DatePipe, LoadingSpinner],
   templateUrl: './article-editor.html',
   styleUrl: './article-editor.scss',
 })
@@ -27,6 +28,7 @@ export class ArticleEditor {
   isEditMode = computed(() => !!this.slug());
 
   private articleResource = this.articleService.getArticleBySlug(this.slug);
+  isLoading = computed(() => this.articleResource.isLoading());
 
   tagList = signal<string[]>([]);
 

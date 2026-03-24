@@ -1,128 +1,133 @@
-<div class="page-wrap">
-  <!-- MAIN EDITOR -->
-  <main>
-    <div class="page-header">
-      <div class="page-title-group">
-        <div class="page-tag">Edit Account</div>
-        <div class="page-title">Edit <span>Profile</span></div>
+@if (isLoading()) {
+  <app-loading-spinner />
+} @else {
+  <div class="page-wrap">
+    <!-- MAIN EDITOR -->
+    <main>
+      <div class="page-header">
+        <div class="page-title-group">
+          <div class="page-tag">Edit Account</div>
+          <div class="page-title">Edit <span>Profile</span></div>
+        </div>
+        <a [routerLink]="['/profile', profile().username]" class="back-link">
+          <span class="arrow">&larr;</span> Back to profile
+        </a>
       </div>
-      <a [routerLink]="['/profile', profile().username]" class="back-link">
-        <span class="arrow">&larr;</span> Back to profile
-      </a>
-    </div>
 
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-      <div class="editor-form">
-        <!-- IDENTITY -->
-        <div class="form-section-title">Identity</div>
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="editor-form">
+          <!-- IDENTITY -->
+          <div class="form-section-title">Identity</div>
 
-        <div class="avatar-row">
-          <div class="avatar-preview">{{ previewInitials() }}</div>
-          <div class="avatar-input-group">
-            <label for="imageUrl">Profile Image URL <span class="label-optional">— optional</span></label>
-            <div class="input-wrap">
-              <input type="url" id="imageUrl" formControlName="image" placeholder="https://example.com/photo.jpg" />
+          <div class="avatar-row">
+            <div class="avatar-preview">{{ previewInitials() }}</div>
+            <div class="avatar-input-group">
+              <label for="imageUrl">Profile Image URL <span class="label-optional">— optional</span></label>
+              <div class="input-wrap">
+                <input type="url" id="imageUrl" formControlName="image" placeholder="https://example.com/photo.jpg" />
+              </div>
+              <div class="form-hint">Paste a direct link to a square image. JPEG or PNG works best.</div>
             </div>
-            <div class="form-hint">Paste a direct link to a square image. JPEG or PNG works best.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="label-required" for="username">Username</label>
+            <div class="input-wrap">
+              <input type="text" id="username" formControlName="username" autocomplete="username" maxlength="40" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="label-required" for="email">Email Address</label>
+            <div class="input-wrap">
+              <input type="email" id="email" formControlName="email" autocomplete="email" />
+            </div>
+          </div>
+
+          <!-- ABOUT -->
+          <div class="form-section-title">About</div>
+
+          <div class="form-group">
+            <label for="bio">Bio <span class="label-optional">(optional)</span></label>
+            <textarea
+              id="bio"
+              formControlName="bio"
+              placeholder="Tell the world a little about yourself…"
+              maxlength="300"
+              rows="4"
+            ></textarea>
+          </div>
+
+          <!-- SECURITY -->
+          <div class="form-section-title">Security</div>
+
+          <div class="form-group">
+            <label for="password">New Password <span class="label-optional">— leave blank to keep current</span></label>
+            <div class="input-wrap password-wrap">
+              <input
+                type="password"
+                id="password"
+                formControlName="password"
+                placeholder="••••••••"
+                autocomplete="new-password"
+              />
+            </div>
+            <div class="form-hint">Minimum 8 characters.</div>
+          </div>
+
+          <!-- ACTIONS -->
+          <div class="form-actions">
+            <button type="submit" class="btn-publish" [disabled]="!profileForm.valid">
+              <span>Save Changes</span>
+            </button>
           </div>
         </div>
+      </form>
+    </main>
 
-        <div class="form-group">
-          <label class="label-required" for="username">Username</label>
-          <div class="input-wrap">
-            <input type="text" id="username" formControlName="username" autocomplete="username" maxlength="40" />
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <!-- LIVE PREVIEW -->
+      <div class="preview-card">
+        <div class="preview-label">Live Preview</div>
+        <div class="preview-identity">
+          <div class="preview-avatar">{{ previewInitials() }}</div>
+          <div class="preview-name">
+            @if (previewName()) {
+              {{ previewName() }}
+            } @else {
+              <em style="color: var(--gray-mid-4); font-size: 0.9rem">Username…</em>
+            }
           </div>
         </div>
-
-        <div class="form-group">
-          <label class="label-required" for="email">Email Address</label>
-          <div class="input-wrap">
-            <input type="email" id="email" formControlName="email" autocomplete="email" />
-          </div>
-        </div>
-
-        <!-- ABOUT -->
-        <div class="form-section-title">About</div>
-
-        <div class="form-group">
-          <label for="bio">Bio <span class="label-optional">(optional)</span></label>
-          <textarea
-            id="bio"
-            formControlName="bio"
-            placeholder="Tell the world a little about yourself…"
-            maxlength="300"
-            rows="4"
-          ></textarea>
-        </div>
-
-        <!-- SECURITY -->
-        <div class="form-section-title">Security</div>
-
-        <div class="form-group">
-          <label for="password">New Password <span class="label-optional">— leave blank to keep current</span></label>
-          <div class="input-wrap password-wrap">
-            <input
-              type="password"
-              id="password"
-              formControlName="password"
-              placeholder="••••••••"
-              autocomplete="new-password"
-            />
-          </div>
-          <div class="form-hint">Minimum 8 characters.</div>
-        </div>
-
-        <!-- ACTIONS -->
-        <div class="form-actions">
-          <button type="submit" class="btn-publish" [disabled]="!profileForm.valid">
-            <span>Save Changes</span>
-          </button>
-        </div>
-      </div>
-    </form>
-  </main>
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <!-- LIVE PREVIEW -->
-    <div class="preview-card">
-      <div class="preview-label">Live Preview</div>
-      <div class="preview-identity">
-        <div class="preview-avatar">{{ previewInitials() }}</div>
-        <div class="preview-name">
-          @if (previewName()) {
-            {{ previewName() }}
+        <div class="preview-bio">
+          @if (previewBio()) {
+            {{ previewBio() }}
           } @else {
-            <em style="color: var(--gray-mid-4); font-size: 0.9rem">Username…</em>
+            No bio yet…
           }
         </div>
       </div>
-      <div class="preview-bio">
-        @if (previewBio()) {
-          {{ previewBio() }}
-        } @else {
-          No bio yet…
-        }
-      </div>
-    </div>
 
-    <!-- TIPS -->
-    <div class="sidebar-card">
-      <div class="sidebar-card-title"><span class="material-symbols-outlined icon">stat_0</span> Profile Tips</div>
-      <div class="tips-list">
-        <div class="tip">
-          <div class="tip-num">1</div>
-          <div class="tip-text">Your username is part of your public URL — keep it memorable.</div>
-        </div>
-        <div class="tip">
-          <div class="tip-num">2</div>
-          <div class="tip-text">A short, honest bio helps readers connect with your work.</div>
-        </div>
-        <div class="tip">
-          <div class="tip-num">3</div>
-          <div class="tip-text">Use a direct image URL for your profile photo. Square crops look best.</div>
+      <!-- TIPS -->
+      <div class="sidebar-card">
+        <div class="sidebar-card-title"><span class="material-symbols-outlined icon">stat_0</span> Profile Tips</div>
+        <div class="tips-list">
+          <div class="tip">
+            <div class="tip-num">1</div>
+            <div class="tip-text">Your username is part of your public URL — keep it memorable.</div>
+          </div>
+          <div class="tip">
+            <div class="tip-num">2</div>
+            <div class="tip-text">A short, honest bio helps readers connect with your work.</div>
+          </div>
+          <div class="tip">
+            <div class="tip-num">3</div>
+            <div class="tip-text">Use a direct image URL for your profile photo. Square crops look best.</div>
+          </div>
         </div>
       </div>
-    </div>
-  </aside>
-</div>
+    </aside>
+  </div>
+}
+<!-- end @else -->

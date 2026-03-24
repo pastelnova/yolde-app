@@ -9,10 +9,11 @@ import { ProfileInterface } from '../../shared/models/profile.interface';
 import { authStore } from '../../core/auth/store/auth.store';
 import { ArticlePreview } from '../../shared/components/article-preview/article-preview';
 import { Pagination } from '../../shared/components/pagination/pagination';
+import { LoadingSpinner } from '../../shared/components/loading-spinner/loading-spinner';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, UpperCasePipe, ArticlePreview, Pagination, RouterLink],
+  imports: [CommonModule, UpperCasePipe, ArticlePreview, Pagination, RouterLink, LoadingSpinner],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })
