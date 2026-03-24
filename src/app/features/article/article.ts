@@ -7,10 +7,11 @@ import { authStore } from '../../core/auth/store/auth.store';
 import { ArticleInterface } from '../../shared/models/article.interface';
 import { ArticleService } from '../../shared/services/article.service';
 import { LoadingSpinner } from '../../shared/components/loading-spinner/loading-spinner';
+import { CommentsComponent } from '../comments/comments';
 
 @Component({
   selector: 'app-article',
-  imports: [UpperCasePipe, DatePipe, RouterLink, LoadingSpinner],
+  imports: [UpperCasePipe, DatePipe, RouterLink, LoadingSpinner, CommentsComponent],
   templateUrl: './article.html',
   styleUrl: './article.scss',
 })
@@ -22,6 +23,7 @@ export class ArticleComponent {
 
   isFavorited = signal(false);
   favoritesCount = signal(0);
+  commentsCount = signal(0);
   isFollowing = signal(false);
   isLoading = signal(false);
   isFollowLoading = signal(false);

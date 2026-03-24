@@ -7,10 +7,6 @@
   overflow: hidden;
 }
 
-.article-hero.show {
-  display: block;
-}
-
 .article-hero::before {
   content: 'YOLDE';
   font-family: 'Bebas Neue', sans-serif;
@@ -224,10 +220,6 @@
   gap: 4rem;
 }
 
-.article-layout.show {
-  display: grid;
-}
-
 /* ── ARTICLE BODY ── */
 .article-body {
   font-family: 'Lora', Georgia, serif;
@@ -432,14 +424,6 @@
   background: transparent;
   color: var(--black);
 }
-.btn-follow.following {
-  background: transparent;
-  color: var(--black);
-  border-color: var(--black);
-}
-.btn-follow.following:hover {
-  background: var(--gray-light-f0);
-}
 
 /* ── SIDEBAR ── */
 .article-sidebar {
@@ -465,8 +449,7 @@
   gap: 0.4rem;
 }
 
-.sidebar-card-title .icon,
-.material-symbols-outlined .icon {
+.sidebar-card-title .icon {
   color: var(--yellow);
 }
 
@@ -576,3 +559,4 @@
     font-size: 0.72rem;
   }
 }
+

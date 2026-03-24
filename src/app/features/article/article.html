@@ -119,6 +119,7 @@
         </div>
 
         <!-- COMMENTS -->
+        <app-comments [slug]="article().slug" (commentsCount)="commentsCount.set($event)" />
       </div>
 
       <!-- SIDEBAR -->
@@ -138,7 +139,7 @@
               <div class="stat-label">Min Read</div>
             </div>
             <div class="stat-item">
-              <div class="stat-num">0</div>
+              <div class="stat-num">{{ commentsCount() }}</div>
               <div class="stat-label">Responses</div>
             </div>
           </div>

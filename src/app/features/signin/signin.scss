@@ -29,21 +29,6 @@
   white-space: nowrap;
 }
 
-.left-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--yellow);
-  color: var(--black);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 0.3rem 0.8rem;
-  margin-bottom: 2rem;
-  width: fit-content;
-  animation: fadeUp 0.5s ease both;
-}
 
 .left-heading {
   font-family: 'DM Serif Display', serif;
@@ -207,14 +192,6 @@ label {
   align-items: center;
 }
 
-.input-icon {
-  position: absolute;
-  left: 1rem;
-  color: var(--gray-mid-a);
-  font-size: 0.9rem;
-  pointer-events: none;
-  transition: color 0.2s;
-}
 
 input[type='email'],
 input[type='password'],
@@ -240,24 +217,11 @@ input:focus {
   box-shadow: 4px 4px 0 var(--yellow);
 }
 
-input:focus + .input-icon,
-.input-wrap:focus-within .input-icon {
-  color: var(--black);
-}
-
-input.error {
-  border-color: var(--red-mid);
-}
-
 .error-msg {
   font-size: 0.72rem;
   color: var(--red-mid);
   margin-top: 0.35rem;
   display: none;
-}
-
-.error-msg.show {
-  display: block;
 }
 
 /* PASSWORD TOGGLE */
@@ -281,48 +245,6 @@ input.error {
   color: var(--black);
 }
 
-/* REMEMBER & FORGOT */
-.form-options {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-}
-
-.checkbox-wrap {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  cursor: pointer;
-}
-
-.checkbox-wrap input[type='checkbox'] {
-  width: 16px;
-  height: 16px;
-  padding: 0;
-  border: 2px solid var(--gray-light);
-  background: var(--white);
-  cursor: pointer;
-  accent-color: var(--yellow);
-}
-
-.checkbox-wrap span {
-  font-size: 0.78rem;
-  color: var(--gray-mid-6);
-}
-
-.forgot-link {
-  font-size: 0.78rem;
-  color: var(--black);
-  text-decoration: none;
-  font-weight: 600;
-  border-bottom: 2px solid var(--yellow);
-  transition: color 0.15s;
-}
-
-.forgot-link:hover {
-  color: var(--gray-mid-5);
-}
 
 /* SUBMIT BUTTON */
 .btn-submit {
@@ -380,108 +302,6 @@ input.error {
   transform: translateX(4px);
 }
 
-/* DIVIDER */
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 1.5rem 0;
-}
-
-.divider-line {
-  flex: 1;
-  height: 1px;
-  background: var(--gray-light);
-}
-
-.divider-text {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gray-mid-b);
-}
-
-/* SOCIAL BUTTONS */
-.social-btns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.8rem;
-}
-
-.btn-social {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  padding: 0.75rem 1rem;
-  border: 2px solid var(--gray-light);
-  background: var(--white);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--black);
-  cursor: pointer;
-  transition: all 0.2s;
-  text-decoration: none;
-}
-
-.btn-social:hover {
-  border-color: var(--black);
-  box-shadow: 3px 3px 0 var(--yellow);
-  transform: translate(-1px, -1px);
-}
-
-.btn-social svg {
-  width: 16px;
-  height: 16px;
-  flex-shrink: 0;
-}
-
-/* SUCCESS STATE */
-.success-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: var(--yellow);
-  z-index: 999;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 1rem;
-  animation: successIn 0.4s ease both;
-}
-
-.success-overlay.show {
-  display: flex;
-}
-
-@keyframes successIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.success-logo {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 6rem;
-  color: var(--black);
-  letter-spacing: 0.05em;
-  line-height: 1;
-}
-
-.success-msg {
-  font-family: 'DM Serif Display', serif;
-  font-style: italic;
-  font-size: 1.5rem;
-  color: var(--black);
-  opacity: 0.6;
-}
 
 /* ANIMATIONS */
 @keyframes fadeUp {

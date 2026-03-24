@@ -1,0 +1,15 @@
+<div class="comment-item">
+  <div class="comment-body">{{ comment().body }}</div>
+  <div class="comment-footer">
+    <div class="comment-avatar-sm">{{ comment().author.username.charAt(0) | uppercase }}</div>
+    <a class="comment-author-name" [routerLink]="['/profile', comment().author.username]">{{
+      comment().author.username
+    }}</a>
+    <span class="comment-date">{{ comment().createdAt | date: 'mediumDate' }}</span>
+    @if (comment().author.username === currentUsername()) {
+      <button class="comment-delete mine" type="button" (click)="delete.emit(comment().id)">
+        <span class="material-symbols-outlined"> close </span> Delete
+      </button>
+    }
+  </div>
+</div>

@@ -278,22 +278,6 @@ textarea:focus {
   display: none;
 }
 
-.btn-cancel {
-  background: transparent;
-  color: var(--gray-mid-8);
-  border-color: var(--gray-light);
-  flex: unset;
-}
-
-.btn-cancel:hover::before {
-  display: none;
-}
-
-.btn-cancel:hover {
-  color: var(--black);
-  border-color: var(--black);
-  background: transparent;
-}
 
 /* ── SIDEBAR ── */
 .sidebar {
@@ -366,13 +350,6 @@ textarea:focus {
   min-height: 1.4rem;
 }
 
-.preview-handle {
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gray-mid-8);
-  margin-bottom: 0.8rem;
-}
 
 .preview-bio {
   font-size: 0.8rem;

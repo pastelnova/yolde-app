@@ -2,6 +2,7 @@ import { HttpClient, httpResource } from '@angular/common/http';
 import { inject, Injectable, linkedSignal, Signal, signal } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { ArticleInterface } from '../models/article.interface';
+import { CommentInterface } from '../models/comment.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -121,5 +122,18 @@ export class ArticleService {
         return topArticles[Math.floor(Math.random() * topArticles.length)];
       },
     });
+  }
+
+  // COMMENTS
+  getComments(slug: Signal<string>) {
+    return httpResource<{ comments: CommentInterface[] }>(() => (slug() ? `/articles/${slug()}/comments` : undefined));
+  }
+
+  createComment(slug: string, body: string) {
+    return this.http.post<{ comment: CommentInterface }>(`/articles/${slug}/comments`, { comment: { body } });
+  }
+
+  deleteComment(slug: string, commentId: number) {
+    return this.http.delete(`/articles/${slug}/comments/${commentId}`);
   }
 }
