@@ -46,7 +46,7 @@
                 class="btn-action btn-action-delete"
                 type="button"
                 [disabled]="isDeleting()"
-                (click)="deleteArticle(article().slug)"
+                (click)="confirmDeleteArticle()"
               >
                 <span class="material-symbols-outlined"> close </span> Delete
               </button>
@@ -174,4 +174,14 @@
     </div>
   }
   <!-- end @else if -->
+
+  @if (showDeleteConfirm()) {
+    <app-confirm-modal
+      message="Delete this article?"
+      sub="This will permanently remove the article and all its comments."
+      confirmLabel="Delete"
+      (confirmed)="deleteArticle(article().slug)"
+      (cancelled)="showDeleteConfirm.set(false)"
+    />
+  }
 </div>

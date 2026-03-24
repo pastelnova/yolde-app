@@ -8,10 +8,11 @@ import { ArticleInterface } from '../../shared/models/article.interface';
 import { ArticleService } from '../../shared/services/article.service';
 import { LoadingSpinner } from '../../shared/components/loading-spinner/loading-spinner';
 import { CommentsComponent } from '../comments/comments';
+import { ConfirmModal } from '../../shared/components/confirm-modal/confirm-modal';
 
 @Component({
   selector: 'app-article',
-  imports: [UpperCasePipe, DatePipe, RouterLink, LoadingSpinner, CommentsComponent],
+  imports: [UpperCasePipe, DatePipe, RouterLink, LoadingSpinner, CommentsComponent, ConfirmModal],
   templateUrl: './article.html',
   styleUrl: './article.scss',
 })
@@ -28,6 +29,7 @@ export class ArticleComponent {
   isLoading = signal(false);
   isFollowLoading = signal(false);
   isDeleting = signal(false);
+  showDeleteConfirm = signal(false);
 
   private slug = toSignal(this.route.params.pipe(map((params) => params['slug'])), {
     initialValue: '',
@@ -102,9 +104,13 @@ export class ArticleComponent {
     });
   }
 
-  deleteArticle(slug: string) {
+  confirmDeleteArticle() {
     if (!this.store.currentUser() || this.isDeleting()) return;
+    this.showDeleteConfirm.set(true);
+  }
 
+  deleteArticle(slug: string) {
+    this.showDeleteConfirm.set(false);
     this.isDeleting.set(true);
     this.articleService.deleteArticle(slug).subscribe({
       next: () => {

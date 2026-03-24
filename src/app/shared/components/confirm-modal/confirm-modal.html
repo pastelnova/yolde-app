@@ -1,0 +1,11 @@
+<div class="overlay" tabindex="0" (click)="onOverlayClick($event)" (keydown.escape)="cancelled.emit()">
+  <div class="modal">
+    <div class="modal-logo">Yolde</div>
+    <div class="modal-msg">{{ message() }}</div>
+    <div class="modal-sub">{{ sub() }}</div>
+    <div class="modal-actions">
+      <button class="modal-btn outline" type="button" (click)="cancelled.emit()">Cancel</button>
+      <button class="modal-btn danger" type="button" (click)="confirmed.emit()">{{ confirmLabel() }}</button>
+    </div>
+  </div>
+</div>

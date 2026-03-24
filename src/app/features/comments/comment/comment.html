@@ -7,9 +7,18 @@
     }}</a>
     <span class="comment-date">{{ comment().createdAt | date: 'mediumDate' }}</span>
     @if (comment().author.username === currentUsername()) {
-      <button class="comment-delete mine" type="button" (click)="delete.emit(comment().id)">
+      <button class="comment-delete mine" type="button" (click)="showDeleteConfirm.set(true)">
         <span class="material-symbols-outlined"> close </span> Delete
       </button>
     }
   </div>
 </div>
+
+@if (showDeleteConfirm()) {
+  <app-confirm-modal
+    message="Delete this comment?"
+    confirmLabel="Delete"
+    (confirmed)="delete.emit(comment().id); showDeleteConfirm.set(false)"
+    (cancelled)="showDeleteConfirm.set(false)"
+  />
+}
