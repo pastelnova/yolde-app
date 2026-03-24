@@ -64,6 +64,14 @@ export class AuthService {
     );
   }
 
+  updateUser(user: Partial<Omit<UserInterface, 'token'>>): Observable<{ user: UserInterface }> {
+    return this.http.put<{ user: UserInterface }>('/user', { user }).pipe(
+      tap(({ user }) => {
+        this.store.signIn(user);
+      }),
+    );
+  }
+
   signout() {
     this.tokenService.remove();
     this.store.signout();

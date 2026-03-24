@@ -1,0 +1,438 @@
+.page-wrap {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem;
+  gap: 3rem;
+  animation: fadeUp 0.5s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── PAGE HEADER ── */
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  border-bottom: 3px solid var(--black);
+  padding-bottom: 1rem;
+}
+
+.page-tag {
+  display: inline-block;
+  background: var(--yellow);
+  color: var(--black);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  margin-bottom: 0.6rem;
+}
+
+.page-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.8rem;
+  letter-spacing: 0.04em;
+  color: var(--black);
+  line-height: 1;
+}
+
+.page-title span {
+  color: var(--yellow);
+  -webkit-text-stroke: 1px var(--black);
+}
+
+.back-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-mid-8);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.2s;
+  white-space: nowrap;
+  align-self: flex-end;
+  padding-bottom: 0.2rem;
+}
+
+.back-link:hover {
+  color: var(--black);
+}
+
+/* ── FORM ── */
+.editor-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-section-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-mid-b);
+  margin-bottom: -0.5rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.label-optional {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--gray-mid-b);
+}
+
+.label-required::after {
+  content: ' *';
+  color: var(--red-mid);
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='url'],
+input[type='password'] {
+  width: 100%;
+  background: var(--white);
+  border: 2px solid var(--gray-light);
+  color: var(--black);
+  padding: 0.85rem 1rem 0.85rem 1.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type='text']:focus,
+input[type='email']:focus,
+input[type='url']:focus,
+input[type='password']:focus {
+  border-color: var(--black);
+  box-shadow: 4px 4px 0 var(--yellow);
+}
+
+textarea {
+  width: 100%;
+  background: var(--white);
+  border: 2px solid var(--gray-light);
+  color: var(--black);
+  padding: 1rem 1.5rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  resize: vertical;
+  line-height: 1.65;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+textarea:focus {
+  border-color: var(--black);
+  box-shadow: 4px 4px 0 var(--yellow);
+}
+
+.form-hint {
+  font-size: 0.7rem;
+  color: var(--gray-mid-b);
+  margin-top: 0.1rem;
+}
+
+/* ── AVATAR ── */
+.avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.avatar-preview {
+  width: 72px;
+  height: 72px;
+  background: var(--yellow);
+  color: var(--black);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid var(--gray-light);
+}
+
+.avatar-input-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+/* ── PASSWORD ── */
+.password-wrap {
+  position: relative;
+}
+
+/* ── FORM ACTIONS ── */
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding-top: 0.5rem;
+}
+
+.btn-publish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  background: var(--black);
+  color: var(--yellow);
+  border: 2px solid var(--black);
+  padding: 1rem 1.5rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.btn-publish::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 0;
+  background: var(--yellow);
+  transition: height 0.25s ease;
+  z-index: 0;
+}
+
+.btn-publish:hover::before {
+  height: 100%;
+}
+
+.btn-publish:hover {
+  color: var(--black);
+}
+
+.btn-publish span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-publish:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-publish:disabled::before {
+  display: none;
+}
+
+.btn-cancel {
+  background: transparent;
+  color: var(--gray-mid-8);
+  border-color: var(--gray-light);
+  flex: unset;
+}
+
+.btn-cancel:hover::before {
+  display: none;
+}
+
+.btn-cancel:hover {
+  color: var(--black);
+  border-color: var(--black);
+  background: transparent;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebar-card {
+  border: 1px solid var(--gray-light);
+  border-top: 3px solid var(--yellow);
+  padding: 1.5rem;
+}
+
+.sidebar-card-title .icon {
+  color: var(--yellow);
+}
+
+.sidebar-card-title {
+  display: flex;
+  align-items: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: var(--black);
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+}
+
+/* Preview card */
+.preview-card {
+  background: var(--gray);
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+.preview-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 1rem;
+}
+
+.preview-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: var(--yellow);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  color: var(--black);
+  margin-bottom: 0.8rem;
+}
+
+.preview-identity {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.preview-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.15rem;
+  color: var(--white);
+  margin-bottom: 0.2rem;
+  min-height: 1.4rem;
+}
+
+.preview-handle {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-mid-8);
+  margin-bottom: 0.8rem;
+}
+
+.preview-bio {
+  font-size: 0.8rem;
+  color: var(--gray-mid-5);
+  line-height: 1.6;
+  font-style: italic;
+  min-height: 1.6rem;
+}
+
+/* Tip card */
+.tips-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.tip {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.tip-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: var(--yellow);
+  color: var(--black);
+  font-size: 0.65rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.tip-text {
+  font-size: 0.78rem;
+  color: var(--gray-mid-5);
+  line-height: 1.55;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  .page-wrap {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-wrap {
+    padding: 2rem 1.2rem;
+  }
+  .page-title {
+    font-size: 2rem;
+  }
+  .form-actions {
+    flex-direction: column;
+  }
+}
