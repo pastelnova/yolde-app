@@ -22,7 +22,7 @@ export class Register {
         nonNullable: true,
       }),
       password: new FormControl('', {
-        validators: [Validators.required, Validators.minLength(3)], //TODO: maybe 8
+        validators: [Validators.required, Validators.minLength(8)],
         nonNullable: true,
       }),
       username: new FormControl('', {
@@ -30,6 +30,12 @@ export class Register {
         nonNullable: true,
       }),
     });
+  }
+
+  showPassword = false;
+
+  togglePassword(): void {
+    this.showPassword = !this.showPassword;
   }
 
   onSubmit() {

@@ -34,19 +34,9 @@
         <div class="form-group">
           <label for="username">Username</label>
           <div class="input-wrap">
-            <input
-              formControlName="username"
-              type="text"
-              id="username"
-              placeholder="@username"
-              autocomplete="off"
-              oninput="checkUsername(this)"
-            />
+            <input formControlName="username" type="text" id="username" placeholder="@username" autocomplete="off" />
           </div>
-          <div class="availability" id="usernameAvail">
-            <div class="avail-dot" id="availDot"></div>
-            <span id="availText" class="availText">Choose a unique handle</span>
-          </div>
+
           <div class="error-msg" id="usernameErr">Please choose a username.</div>
         </div>
 
@@ -65,16 +55,14 @@
           <div class="input-wrap">
             <input
               formControlName="password"
-              type="password"
+              [type]="showPassword ? 'text' : 'password'"
               id="password"
               placeholder="Create a strong password"
               autocomplete="new-password"
-              oninput="
-                checkStrength(this);
-                checkConfirm();
-              "
             />
-            <button type="button" class="pw-toggle">Show</button>
+            <button type="button" class="pw-toggle" (click)="togglePassword()">
+              {{ showPassword ? 'Hide' : 'Show' }}
+            </button>
           </div>
           <div class="strength-label" id="strengthLabel"></div>
           <div class="error-msg" id="passwordErr">Password must be at least 8 characters.</div>

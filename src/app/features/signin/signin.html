@@ -46,12 +46,14 @@
           <div class="input-wrap">
             <input
               formControlName="password"
-              type="password"
+              [type]="showPassword ? 'text' : 'password'"
               id="password"
               placeholder="Your password"
               autocomplete="current-password"
             />
-            <button type="button" class="pw-toggle" id="pwToggle">Show</button>
+            <button type="button" class="pw-toggle" (click)="togglePassword()">
+              {{ showPassword ? 'Hide' : 'Show' }}
+            </button>
           </div>
           <div class="error-msg" id="passwordErr">Password must be at least 8 characters.</div>
         </div>

@@ -31,7 +31,7 @@ export class TokenService {
   isTokenExpired(token: string): boolean {
     try {
       const expirationDate = this.getExpirationDate(token);
-      if (!expirationDate) return true;
+      if (!expirationDate) return false;
       return Date.now() > expirationDate.getTime();
     } catch {
       return true;

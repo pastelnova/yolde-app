@@ -28,6 +28,12 @@ export class Signin {
     });
   }
 
+  showPassword = false;
+
+  togglePassword(): void {
+    this.showPassword = !this.showPassword;
+  }
+
   onSubmit() {
     this.authService
       .signin({
