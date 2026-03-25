@@ -175,6 +175,13 @@ input:focus {
   margin-top: 0.35rem;
   display: none;
 }
+.server-error {
+  font-size: 0.8rem;
+  color: var(--red-mid);
+  border: 1.5px solid var(--red-mid);
+  padding: 0.6rem 0.9rem;
+  margin-bottom: 1rem;
+}
 
 /* USERNAME AVAILABILITY */
 .availability {

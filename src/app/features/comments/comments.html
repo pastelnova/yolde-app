@@ -9,6 +9,9 @@
         [value]="commentBody()"
         (input)="commentBody.set($any($event.target).value)"
       ></textarea>
+      @if (commentError()) {
+        <div class="server-error">{{ commentError() }}</div>
+      }
       <div class="comment-form-footer">
         <div class="comment-author-row">
           <div class="comment-avatar-sm">{{ store.currentUser()!.username.charAt(0) | uppercase }}</div>

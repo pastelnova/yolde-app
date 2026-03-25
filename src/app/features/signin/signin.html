@@ -58,6 +58,11 @@
           <div class="error-msg" id="passwordErr">Password must be at least 8 characters.</div>
         </div>
 
+        <!-- SERVER ERROR -->
+        @if (serverError()) {
+          <div class="server-error">{{ serverError() }}</div>
+        }
+
         <!-- SUBMIT -->
         <button type="submit" [disabled]="!authForm.valid" class="btn-submit" id="submitBtn">
           <span id="btnText">Sign In</span>

@@ -74,6 +74,11 @@
             <div class="tag-hint">Press <strong>Enter</strong> or <strong>,</strong> to add a tag. Max 5 tags.</div>
           </div>
 
+          <!-- SERVER ERROR -->
+          @if (serverError()) {
+            <div class="server-error">{{ serverError() }}</div>
+          }
+
           <!-- ACTIONS -->
           <div class="form-actions">
             <button type="submit" class="btn-publish" [disabled]="!articleForm.valid">

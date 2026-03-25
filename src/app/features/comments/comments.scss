@@ -36,6 +36,13 @@
   color: var(--gray-mid-b);
 }
 
+.server-error {
+  font-size: 0.8rem;
+  color: var(--red-mid);
+  border: 1.5px solid var(--red-mid);
+  padding: 0.6rem 0.9rem;
+}
+
 .comment-form-footer {
   display: flex;
   align-items: center;

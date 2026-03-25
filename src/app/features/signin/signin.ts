@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthFormInterface } from '../../core/auth/models/auth-form.interface';
 import { AuthService } from '../../core/auth/services/auth.service';
 import { Router, RouterModule } from '@angular/router';
+import { ErrorService } from '../../shared/services/error.service';
 
 @Component({
   selector: 'app-signin',
@@ -12,6 +13,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class Signin {
   authService = inject(AuthService);
+  errorService = inject(ErrorService);
   authForm: FormGroup<AuthFormInterface>;
   router = inject(Router);
 
@@ -29,12 +31,14 @@ export class Signin {
   }
 
   showPassword = false;
+  serverError = signal('');
 
   togglePassword(): void {
     this.showPassword = !this.showPassword;
   }
 
   onSubmit() {
+    this.serverError.set('');
     this.authService
       .signin({
         email: this.authForm.value.email!,
@@ -45,7 +49,7 @@ export class Signin {
           this.router.navigate(['/']);
         },
         error: (error) => {
-          console.log('Signin failed:', error);
+          this.serverError.set(this.errorService.extractMessage(error, 'Sign in failed. Please try again.'));
         },
       });
   }

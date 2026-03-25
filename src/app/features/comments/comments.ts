@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { authStore } from '../../core/auth/store/auth.store';
 import { CommentInterface } from '../../shared/models/comment.interface';
 import { ArticleService } from '../../shared/services/article.service';
+import { ErrorService } from '../../shared/services/error.service';
 import { LoadingSpinner } from '../../shared/components/loading-spinner/loading-spinner';
 import { CommentComponent } from './comment/comment';
 
@@ -17,6 +18,7 @@ export class CommentsComponent {
   slug = input.required<string>();
 
   private articleService = inject(ArticleService);
+  private errorService = inject(ErrorService);
   store = inject(authStore);
   private router = inject(Router);
 
@@ -41,6 +43,7 @@ export class CommentsComponent {
 
   commentBody = signal('');
   isPostingComment = signal(false);
+  commentError = signal('');
 
   postComment() {
     const body = this.commentBody().trim();
@@ -50,6 +53,7 @@ export class CommentsComponent {
       return;
     }
 
+    this.commentError.set('');
     this.isPostingComment.set(true);
     this.articleService.createComment(this.slug(), body).subscribe({
       next: () => {
@@ -57,7 +61,8 @@ export class CommentsComponent {
         this.commentBody.set('');
         this.isPostingComment.set(false);
       },
-      error: () => {
+      error: (error) => {
+        this.commentError.set(this.errorService.extractMessage(error, 'Failed to post comment. Please try again.'));
         this.isPostingComment.set(false);
       },
     });

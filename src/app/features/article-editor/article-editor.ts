@@ -1,4 +1,5 @@
 import { Component, computed, effect, inject, signal } from '@angular/core';
+import { ErrorService } from '../../shared/services/error.service';
 import { authStore } from '../../core/auth/store/auth.store';
 import { DatePipe } from '@angular/common';
 import { ArticleFormInterface } from '../../shared/models/articleForm.interface';
@@ -17,6 +18,7 @@ import { map } from 'rxjs';
 })
 export class ArticleEditor {
   private articleService = inject(ArticleService);
+  private errorService = inject(ErrorService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
   store = inject(authStore);
@@ -30,6 +32,7 @@ export class ArticleEditor {
   private articleResource = this.articleService.getArticleBySlug(this.slug);
   isLoading = computed(() => this.articleResource.isLoading());
 
+  serverError = signal('');
   tagList = signal<string[]>([]);
 
   authorName = computed(() => this.store.currentUser()?.username ?? 'You');
@@ -130,12 +133,13 @@ export class ArticleEditor {
         ? this.articleService.updateArticle(this.slug(), formData)
         : this.articleService.createArticle(formData);
 
+      this.serverError.set('');
       request$.subscribe({
         next: (article) => {
           this.router.navigate(['/article/', article.slug]);
         },
         error: (error) => {
-          console.error('Error saving article:', error);
+          this.serverError.set(this.errorService.extractMessage(error, 'Failed to save article. Please try again.'));
         },
       });
     }
