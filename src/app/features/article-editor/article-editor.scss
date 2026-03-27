@@ -564,6 +564,12 @@ input[type='text']:focus {
   .page-wrap {
     padding: 2rem 1.2rem;
   }
+  input[type='text'] {
+    padding: 0.5rem !important;
+  }
+  #articleBody {
+    padding: 0.5rem;
+  }
   .page-title {
     font-size: 2rem;
   }
@@ -572,5 +578,11 @@ input[type='text']:focus {
   }
   .btn-saveDraft {
     width: 100%;
+  }
+  .tag-input-wrap {
+    padding: 0.5rem;
+  }
+  #tagInput {
+    padding: 0 !important;
   }
 }

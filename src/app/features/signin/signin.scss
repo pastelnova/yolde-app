@@ -342,6 +342,11 @@ input:focus {
   .right-panel::before {
     display: none;
   }
+  input[type='email'],
+  input[type='password'],
+  input[type='text'] {
+    padding: 0.85rem 0.5rem !important;
+  }
 }
 
 @media (max-height: 820px) {

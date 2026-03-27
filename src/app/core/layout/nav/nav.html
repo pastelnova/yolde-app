@@ -1,7 +1,9 @@
 <!-- NAV -->
 <nav>
   <a href="" class="nav-logo">Yolde</a>
+
   @if (!store.isAuthenticated()) {
+    <!-- DESKTOP LINKS (unauthenticated) -->
     <ul class="nav-links">
       <li><a href="">Home</a></li>
       <li>
@@ -12,7 +14,7 @@
       </li>
     </ul>
   } @else {
-    <!-- WRITE NEW ARTICLE -->
+    <!-- DESKTOP LINKS (authenticated) -->
     <ul class="nav-links">
       <li><a href="">Home</a></li>
       <li>
@@ -65,4 +67,59 @@
       </li>
     </ul>
   }
+
+  <!-- BURGER BUTTON (mobile only) -->
+  <button
+    class="burger-btn"
+    (click)="toggleMobileMenu($event)"
+    [attr.aria-expanded]="isMobileMenuOpen()"
+    aria-label="Toggle mobile menu"
+  >
+    <span class="material-symbols-outlined">
+      {{ isMobileMenuOpen() ? 'close' : 'menu' }}
+    </span>
+  </button>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" [class.open]="isMobileMenuOpen()" #mobileMenuRef>
+  @if (!store.isAuthenticated()) {
+    <ul class="mobile-links">
+      <li>
+        <a routerLink="/signin" routerLinkActive="active" (click)="closeMobileMenu()">Sign in</a>
+      </li>
+      <li>
+        <a class="btn-signup-mobile" routerLink="/register" routerLinkActive="active" (click)="closeMobileMenu()"
+          >Get Started</a
+        >
+      </li>
+    </ul>
+  } @else {
+    <ul class="mobile-links">
+      <li>
+        <a [routerLink]="['/article', 'new']" (click)="closeMobileMenu()">
+          <span class="material-symbols-outlined"> stylus_fountain_pen </span>
+          Write
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/profile', authorUsername()]" (click)="closeMobileMenu()">
+          <span class="material-symbols-outlined"> account_circle </span>
+          Profile
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/profile', authorUsername(), 'edit']" (click)="closeMobileMenu()">
+          <span class="material-symbols-outlined"> settings </span>
+          Settings
+        </a>
+      </li>
+      <li class="mobile-signout">
+        <button (click)="onSignout(); closeMobileMenu()">
+          <span class="material-symbols-outlined"> trending_flat </span>
+          Sign Out
+        </button>
+      </li>
+    </ul>
+  }
+</div>

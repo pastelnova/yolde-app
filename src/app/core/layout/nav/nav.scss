@@ -195,6 +195,95 @@ nav {
   flex-shrink: 0;
 }
 
+/* BURGER BUTTON */
+.burger-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--yellow);
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+  transition: color 0.2s;
+
+  .material-symbols-outlined {
+    font-size: 1.75rem;
+    display: block;
+  }
+
+  &:hover {
+    color: var(--white);
+  }
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+  display: none;
+  position: sticky;
+  top: 60px;
+  z-index: 99;
+  background: var(--black);
+  border-bottom: 3px solid var(--yellow);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.25s ease;
+
+  &.open {
+    max-height: 400px;
+  }
+}
+
+.mobile-links {
+  list-style: none;
+  padding: 0.75rem 0 1rem;
+  display: flex;
+  flex-direction: column;
+
+  li a,
+  li button {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 2rem;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s, background 0.2s;
+    width: 100%;
+
+    .material-symbols-outlined {
+      font-size: 1.1rem;
+    }
+
+    &:hover {
+      color: var(--yellow);
+      background: var(--gray-mid-1);
+    }
+  }
+}
+
+.mobile-links .btn-signup-mobile {
+  color: var(--yellow) !important;
+  font-weight: 700;
+}
+
+.mobile-links .mobile-signout button {
+  background: none;
+  border: none;
+  border-top: 1px solid var(--gray-1e);
+  cursor: pointer;
+  color: var(--gray-mid-5);
+  font-family: 'DM Sans', sans-serif;
+
+  &:hover {
+    color: var(--red-mid);
+    background: transparent;
+  }
+}
+
 /* SIGN OUT */
 .dropdown-links .signout-btn {
   width: 100%;
@@ -220,4 +309,21 @@ nav {
 .dropdown-links .signout-btn:hover {
   color: var(--red-mid);
   background: transparent;
+}
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+  .nav-links {
+    display: none;
+  }
+
+  .burger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
 }

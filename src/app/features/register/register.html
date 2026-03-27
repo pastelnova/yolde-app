@@ -65,7 +65,12 @@
             </button>
           </div>
           <div class="strength-label" id="strengthLabel"></div>
-          <div class="error-msg" id="passwordErr">Password must be at least 8 characters.</div>
+          <div
+            class="password-hint"
+            [class.error]="authForm.get('password')?.invalid && authForm.get('password')?.dirty"
+          >
+            Password must be at least 8 characters.
+          </div>
         </div>
 
         <!-- SERVER ERROR -->

@@ -14,6 +14,7 @@ export class Nav {
   authService = inject(AuthService);
 
   protected isDropdownOpen = signal(false);
+  protected isMobileMenuOpen = signal(false);
 
   authorUsername = computed(() => this.store.currentUser()?.username ?? 'You');
   authorInitials = computed(() => {
@@ -23,11 +24,16 @@ export class Nav {
   authorEmail = computed(() => this.store.currentUser()?.email ?? '');
 
   @ViewChild('avatarWrap') private avatarWrap?: ElementRef<HTMLElement>;
+  @ViewChild('mobileMenuRef') private mobileMenuRef?: ElementRef<HTMLElement>;
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
-    if (!this.avatarWrap?.nativeElement.contains(event.target as Node)) {
+    const target = event.target as Node;
+    if (!this.avatarWrap?.nativeElement.contains(target)) {
       this.isDropdownOpen.set(false);
+    }
+    if (!this.mobileMenuRef?.nativeElement.contains(target)) {
+      this.isMobileMenuOpen.set(false);
     }
   }
 
@@ -35,6 +41,15 @@ export class Nav {
   toggleDropdown(event: MouseEvent): void {
     event.stopPropagation();
     this.isDropdownOpen.update((open) => !open);
+  }
+
+  toggleMobileMenu(event: MouseEvent): void {
+    event.stopPropagation();
+    this.isMobileMenuOpen.update((open) => !open);
+  }
+
+  closeMobileMenu(): void {
+    this.isMobileMenuOpen.set(false);
   }
 
   onSignout(): void {

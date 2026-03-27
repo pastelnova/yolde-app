@@ -118,6 +118,13 @@
   .hero-stats {
     display: none;
   }
+  .hero-cta {
+    flex-direction: column;
+  }
+  .btn-primary,
+  .btn-outline {
+    text-align: center;
+  }
 }
 
 /* ANIMATIONS */

@@ -175,6 +175,14 @@ input:focus {
   margin-top: 0.35rem;
   display: none;
 }
+.password-hint {
+  font-size: 0.7rem;
+  color: var(--gray-mid-8);
+  margin-top: 0.3rem;
+}
+.password-hint.error {
+  color: var(--red-mid);
+}
 .server-error {
   font-size: 0.8rem;
   color: var(--red-mid);
@@ -281,7 +289,6 @@ input:focus {
   transform: translateX(4px);
 }
 
-
 /* ===== ANIMATIONS ===== */
 @keyframes slideIn {
   from {
@@ -323,6 +330,11 @@ input:focus {
   }
   .right-panel::before {
     display: none;
+  }
+  input[type='text'],
+  input[type='email'],
+  input[type='password'] {
+    padding: 0.85rem 0.5rem !important;
   }
 }
 
