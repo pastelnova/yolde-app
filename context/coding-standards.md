@@ -24,7 +24,7 @@ You are an expert in Angular, SCSS, and TypeScript, focusing on scalable web dev
 ## Angular
 
 - **Standalone components only** — no `NgModule`. Imports go on the component itself.
-- **Zoneless change detection** — the app uses `provideZonelessChangeDetection()` and has no Zone.js. Don't reach for `NgZone`, `zone.js` patches, or community fixes that assume Zone.js is present.
+- **Zoneless change detection** — zoneless is the Angular 21 default and the app has no Zone.js. Don't add `provideZoneChangeDetection()` and don't reach for `NgZone`, `zone.js` patches, or community fixes that assume Zone.js is present.
 - **Signals first** — prefer `signal()`, `computed()`, and `effect()` for component state. Reach for RxJS only when you genuinely need a stream (HTTP, debounced inputs, route params).
 - **`inject()` over constructor DI** — use `inject(Service)` inside components, directives, services, and guards. Don't add constructor parameters for DI.
 - **Lazy loading** — every feature route uses `loadComponent()` with a dynamic `import()`. Don't eagerly import feature components in `app.routes.ts`.

@@ -32,7 +32,7 @@ Angular 21 application (zoneless, standalone components) with NgRx for state man
 
 ### Key Patterns
 
-- **Zoneless change detection** — uses `provideZonelessChangeDetection()`, no Zone.js
+- **Zoneless change detection** — Angular 21 default; no Zone.js. Don't add `provideZoneChangeDetection()`.
 - **State management** — NgRx SignalStore for auth state (`authStore` with `signalStore`, provided in root); NgRx Store/Effects also configured
 - **Lazy loading** — all feature routes use `loadComponent()` with dynamic imports
 - **HTTP interceptors** — `baseUrlInterceptor` prepends API base URL; `tokenInterceptor` attaches auth tokens
