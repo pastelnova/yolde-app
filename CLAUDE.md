@@ -17,7 +17,7 @@ Read the following to get the full context of the project:
 - **Build:** `npm run build` (production by default, output in `dist/`)
 - **Lint:** `npm run lint` / `npm run lint:fix`
 - **Format:** `npm run prettier:format` / `npm run prettier:check`
-- **Tests:** `npm test` (Karma + Jasmine)
+- **Tests:** `npm test` (Vitest, via Angular's `@angular/build:unit-test` builder)
 - **Generate component:** `npx ng generate component <path>`
 
 ## Architecture

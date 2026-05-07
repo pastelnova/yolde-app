@@ -30,18 +30,21 @@ Do NOT commit without permission and until tests and builds pass. If either fail
 
 Yolde has two test setups — one per repo. Scope is intentionally narrow on both sides; don't add component-level UI tests for Angular templates.
 
-### Frontend — `yolde-app` (Karma + Jasmine)
+### Frontend — `yolde-app` (Vitest)
+
+Run via Angular's `@angular/build:unit-test` builder, so `npm test` (= `ng test`) is the entry point. No Karma, no separate Vitest config to maintain.
 
 - **In scope:** Angular services (`src/app/**/*.service.ts`, `src/app/shared/services/**`), NgRx stores / signal stores (e.g. `core/auth/store`), guards, HTTP interceptors, and pure utility functions.
-- **Out of scope:** Component templates and visual rendering. Don't write tests that mount components purely to assert on the DOM.
+- **Out of scope:** Component templates and visual rendering. Don't write tests that mount components purely to assert on the DOM. Don't add `*.spec.ts` files for components — if `ng generate component` scaffolds one, delete it.
 
 #### Conventions
 
-- Co-locate tests next to the file under test: `home.ts` → `home.spec.ts`
-- Use Jasmine globals (`describe` / `it` / `expect` / `beforeEach`)
+- Co-locate tests next to the file under test: `article.service.ts` → `article.service.spec.ts`
+- Use Vitest globals (`describe` / `it` / `expect` / `beforeEach`) — provided by `types: ["vitest/globals"]` in `tsconfig.spec.json`
+- For mocks/spies use `vi` (`vi.fn()`, `vi.spyOn(...)`), not `jasmine` or `jest`
 - Use `TestBed` to configure providers; mock `HttpClient` with `HttpTestingController` from `@angular/common/http/testing`
 - Don't hit the real API — stub services or use `HttpTestingController.expectOne(...)`
-- Keep tests fast and deterministic — no network, no real timers unless faked with `fakeAsync` / `tick`
+- Keep tests fast and deterministic — no network, no real timers unless faked with `vi.useFakeTimers()`
 
 ### Backend — `yolde-api` (Jest + Supertest)
 
@@ -65,7 +68,7 @@ After implementing, run the relevant commands for whichever repo(s) you touched.
 ```bash
 npm run lint          # angular-eslint
 npm run prettier:check
-npm test              # Karma + Jasmine
+npm test              # Vitest (via @angular/build:unit-test)
 npm run build         # production build, fails on TS errors
 ```
 
