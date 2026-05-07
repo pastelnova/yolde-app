@@ -107,13 +107,15 @@ Match the existing project layout — no `.component` suffix on filenames:
 
 ## Testing
 
-- **Karma + Jasmine** — `npm test`.
+- **Vitest** — `npm test`. Wired up through Angular's `@angular/build:unit-test` builder, so `ng test` is the entry point.
 - **Scope:** services, NgRx stores / signal stores, guards, HTTP interceptors, and pure utilities.
-- **Out of scope:** component templates and visual rendering. Don't mount components purely to assert on the DOM.
-- Co-locate tests: `home.ts` → `home.spec.ts`.
+- **Out of scope:** component templates and visual rendering. Don't mount components purely to assert on the DOM. Don't add `*.spec.ts` files for components.
+- Co-locate tests next to the file under test: `article.service.ts` → `article.service.spec.ts`.
+- Use Vitest globals (`describe` / `it` / `expect` / `beforeEach`) — they're declared via `types: ["vitest/globals"]` in `tsconfig.spec.json`.
+- For mocks/spies use `vi` (e.g. `vi.fn()`, `vi.spyOn(...)`) — not `jasmine` / `jest`.
 - Use `TestBed` to configure providers; mock `HttpClient` with `HttpTestingController` from `@angular/common/http/testing`.
 - Never hit the real API — stub services or use `HttpTestingController.expectOne(...)`.
-- Tests must be deterministic — no network, no real timers (use `fakeAsync` / `tick` if needed).
+- Tests must be deterministic — no network, no real timers (use `vi.useFakeTimers()` if needed).
 - Follow the **Arrange-Act-Assert** pattern.
 
 ## Performance

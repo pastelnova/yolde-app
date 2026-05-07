@@ -156,7 +156,7 @@ CommentEntity {
 | HTTP                  | `HttpClient` + interceptors                     | `baseUrlInterceptor`, `tokenInterceptor`       |
 | Styling               | SCSS                                            |                                                |
 | Tooling               | ESLint + Prettier + Husky + lint-staged         | Pre-commit format & lint                       |
-| Tests                 | Karma + Jasmine                                 |                                                |
+| Tests                 | Vitest                                          | Run via `@angular/build:unit-test`; services / utilities only |
 
 ### Backend — `yolde-api`
 
