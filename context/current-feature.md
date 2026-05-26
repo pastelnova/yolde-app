@@ -1,27 +1,19 @@
-# Current Feature: Dashboard UI Phase 1
+# Current Feature
 
 ## Status
 
-In Progress
+Not Started
 
 ## Goals
 
-- Set up Tailwind v4 (CSS-based config, no `tailwind.config.js`)
-- Initialize spartan-ng and install base components (Angular port of ShadCN)
-- Add Lucide Angular for icons
-- Create `/dashboard` route — lazy-loaded, behind `authGuard`
-- Build the main dashboard layout and global styles
-- Dark mode by default
-- Top bar with search and "new issue" button (display only — non-functional)
-- Sidebar and main area as placeholders (just `h2` "Sidebar" and `h2` "Main")
+<!-- Bullet points of what success looks like -->
 
 ## Notes
 
-- Phase 1 of 3 for the dashboard UI layout.
-- Reference screenshot: @context/screenshots/dashboard-ui.png
-- Related specs: @context/features/dashboard-phase-2-spec.md, @context/features/dashboard-phase-3-spec.md
-- Other refs: @context/project-overview.md, @src/lib/mock-data.ts
+<!-- Additional context, constraints, or details from spec -->
 
 ## History
 
 <!-- Keep this updated. Earliest to latest -->
+
+- **Dashboard UI Phase 1** (2026-05-26): Set up Tailwind v4 (CSS-based, no `tailwind.config.js`), wired the `@spartan-ng/brain` hlm preset and `tw-animate-css`, added `@lucide/angular` for icons. Added lazy `/dashboard` route behind `authGuard` with a dark top bar (search input + "New issue" button, display-only), sidebar/main `h2` placeholders, and host-scoped dark mode. Wrapped the legacy global `*` reset in `@layer base` so Tailwind utilities stop being shadowed. Hid the marketing nav/footer on `/dashboard*` routes.
