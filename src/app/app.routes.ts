@@ -13,6 +13,16 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
+    path: 'projects/:slug',
+    loadComponent: () => import('./features/dashboard/dashboard').then((m) => m.Dashboard),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'projects/:slug/:section',
+    loadComponent: () => import('./features/dashboard/dashboard').then((m) => m.Dashboard),
+    canActivate: [authGuard],
+  },
+  {
     path: 'signin',
     loadComponent: () => import('./features/signin/signin').then((m) => m.Signin),
   },

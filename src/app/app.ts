@@ -24,5 +24,8 @@ export class App {
     { initialValue: this.router.url },
   );
 
-  protected readonly isDashboardRoute = computed(() => this.currentUrl().startsWith('/dashboard'));
+  protected readonly isDashboardRoute = computed(() => {
+    const url = this.currentUrl();
+    return url.startsWith('/dashboard') || url.startsWith('/projects');
+  });
 }
