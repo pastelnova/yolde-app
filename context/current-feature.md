@@ -1,16 +1,27 @@
-# Current Feature
+# Current Feature: Dashboard UI Phase 3
 
 ## Status
 
-Not Started
+In Progress
 
 ## Goals
 
-<!-- Bullet points of what success looks like -->
+- Header with `Board / <Project Name>` breadcrumb, stacked member avatars, view toggle, and `+ New issue` button
+- Filter toolbar with search input and chips for Status, Assignee, Priority, Type, More filters
+- 5 columns in order: Backlog, Todo, In Progress, In Review, Done — each with status dot, label, count, `+`, `⋯`, and `+ New issue` footer
+- Issue cards show: type icon, key, title, label chips, priority pill, comment count, assignee avatar
+- Extend the `Issue` type in `src/lib/mock-data.ts` with `isFavorite` and `isPinned` (currently only on `Project`)
 
 ## Notes
 
-<!-- Additional context, constraints, or details from spec -->
+- Phase 3 of 3 for the dashboard UI layout. Builds the Kanban board at `/projects/:slug/board` shown in the screenshot. Display-only — no drag-and-drop, no create/edit.
+- Data sourced directly from `src/lib/mock-data.ts` until a real database is wired up.
+- References:
+  - @context/screenshots/dashboard-ui.png
+  - @context/project-overview.md
+  - @src/lib/mock-data.ts
+  - @context/features/dashboard-phase-1-spec.md
+  - @context/features/dashboard-phase-2-spec.md
 
 ## History
 
