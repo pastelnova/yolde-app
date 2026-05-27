@@ -1,6 +1,10 @@
-@if (router.url === '/articles' || router.url === '') {
-  <app-ticker></app-ticker>
+@if (isDashboardRoute()) {
+  <router-outlet />
+} @else {
+  @if (router.url === '/articles' || router.url === '') {
+    <app-ticker></app-ticker>
+  }
+  <app-nav></app-nav>
+  <router-outlet />
+  <app-footer></app-footer>
 }
-<app-nav></app-nav>
-<router-outlet />
-<app-footer></app-footer>

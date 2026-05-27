@@ -1,0 +1,49 @@
+<div class="flex h-screen flex-col">
+  <header class="flex h-14 shrink-0 items-center gap-3 border-b border-border bg-sidebar px-4">
+    <div class="flex items-center gap-2 pr-2">
+      <div class="grid h-7 w-7 place-items-center rounded-md bg-primary text-primary-foreground">
+        <span class="text-xs font-semibold tracking-tight">Y</span>
+      </div>
+      <span class="text-sm font-semibold tracking-tight">Yolde</span>
+    </div>
+
+    <div class="relative ml-4 hidden md:block">
+      <svg
+        lucideSearch
+        class="pointer-events-none absolute left-3 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground"
+        aria-hidden="true"
+      ></svg>
+      <input
+        type="search"
+        placeholder="Search issues..."
+        aria-label="Search issues"
+        class="h-9 w-72 rounded-md border border-border bg-background pl-9 pr-12 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-hidden"
+      />
+      <kbd
+        class="pointer-events-none absolute right-2 top-1/2 hidden -translate-y-1/2 rounded border border-border bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground sm:inline-block"
+        >⌘K</kbd
+      >
+    </div>
+
+    <div class="ml-auto flex items-center gap-2">
+      <button
+        type="button"
+        aria-label="Create new issue"
+        class="inline-flex h-9 cursor-pointer items-center gap-1.5 rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      >
+        <svg lucidePlus class="size-3.5" aria-hidden="true"></svg>
+        <span>New issue</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="flex flex-1 overflow-hidden">
+    <aside class="w-60 shrink-0 border-r border-border bg-sidebar p-4">
+      <h2 class="text-sm font-semibold text-sidebar-foreground">Sidebar</h2>
+    </aside>
+
+    <main class="flex-1 overflow-auto p-6">
+      <h2 class="text-sm font-semibold text-foreground">Main</h2>
+    </main>
+  </div>
+</div>
