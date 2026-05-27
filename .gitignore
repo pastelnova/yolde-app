@@ -37,6 +37,10 @@ yarn-error.log
 testem.log
 /typings
 
+# MCP
+.mcp.json
+.playwright-mcp/
+
 # System files
 .DS_Store
 Thumbs.db
