@@ -15,9 +15,13 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import { LucideMenu, LucidePlus, LucideSearch } from '@lucide/angular';
+import { LucideLayoutGrid, LucideList, LucideMenu, LucidePlus } from '@lucide/angular';
 import { map } from 'rxjs';
+import { projects, users } from '../../../lib/mock-data';
+import { Board } from './board/board';
 import { DashboardSidebar } from './sidebar/dashboard-sidebar';
+
+const MAX_VISIBLE_MEMBERS = 5;
 
 const COLLAPSED_KEY = 'yolde:sidebar:collapsed';
 
@@ -33,7 +37,7 @@ function loadCollapsed(): boolean {
 
 @Component({
   selector: 'app-dashboard',
-  imports: [DashboardSidebar, LucideMenu, LucidePlus, LucideSearch],
+  imports: [Board, DashboardSidebar, LucideLayoutGrid, LucideList, LucideMenu, LucidePlus],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -56,10 +60,18 @@ export class Dashboard implements OnDestroy {
     initialValue: this.route.snapshot.paramMap.get('section') ?? 'board',
   });
 
-  protected readonly headerTitle = computed(() => {
-    const section = this.activeSection();
-    return section.charAt(0).toUpperCase() + section.slice(1);
+  protected readonly activeProject = computed(() => {
+    const slug = this.activeProjectSlug();
+    return projects.find((p) => p.slug === slug) ?? projects[0];
   });
+
+  protected readonly sectionLabel = computed(() => {
+    const section = this.activeSection();
+    return section.charAt(0).toUpperCase() + section.slice(1).replace('_', ' ');
+  });
+
+  protected readonly visibleMembers = users.slice(0, MAX_VISIBLE_MEMBERS);
+  protected readonly hiddenMemberCount = Math.max(0, users.length - MAX_VISIBLE_MEMBERS);
 
   private overlayRef: OverlayRef | null = null;
 

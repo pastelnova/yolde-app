@@ -1,0 +1,197 @@
+<div class="flex h-full flex-col">
+  <!-- Filter toolbar -->
+  <div class="flex flex-wrap items-center gap-2 border-b border-border px-4 py-3">
+    <div class="relative">
+      <svg
+        lucideSearch
+        class="pointer-events-none absolute left-3 top-1/2 size-3.5 -translate-y-1/2 text-muted-foreground"
+        aria-hidden="true"
+      ></svg>
+      <input
+        type="search"
+        placeholder="Search issues..."
+        aria-label="Search issues"
+        class="h-8 w-64 rounded-md border border-border bg-background pl-9 pr-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-hidden"
+      />
+    </div>
+
+    <div class="flex flex-wrap items-center gap-1.5">
+      @for (chip of filterChips; track chip.key) {
+        <button
+          type="button"
+          class="inline-flex h-8 cursor-pointer items-center gap-1 rounded-md border border-border bg-card px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+        >
+          <span>{{ chip.label }}</span>
+          @if (chip.key !== 'more') {
+            <svg lucideChevronDown class="size-3.5 opacity-60" aria-hidden="true"></svg>
+          }
+        </button>
+      }
+    </div>
+  </div>
+
+  <!-- Columns -->
+  <div class="flex-1 overflow-auto px-3 py-4">
+    <div class="flex items-start gap-2">
+      @for (col of columns(); track col.status) {
+        <section class="flex min-w-56 flex-1 basis-0 flex-col overflow-hidden rounded-lg bg-sidebar/60">
+          <header class="flex items-center gap-2 px-3 py-2">
+            <span [style.color]="col.color" aria-hidden="true">
+              @switch (col.status) {
+                @case ('backlog') {
+                  <svg lucideInbox class="size-3.5" aria-hidden="true"></svg>
+                }
+                @case ('todo') {
+                  <svg lucideCircle class="size-3.5" aria-hidden="true"></svg>
+                }
+                @case ('in_progress') {
+                  <svg lucideCirclePlay class="size-3.5" aria-hidden="true"></svg>
+                }
+                @case ('in_review') {
+                  <svg lucideGitPullRequest class="size-3.5" aria-hidden="true"></svg>
+                }
+                @case ('done') {
+                  <svg lucideCircleCheck class="size-3.5" aria-hidden="true"></svg>
+                }
+              }
+            </span>
+            <h3 class="text-xs font-semibold text-foreground">{{ col.label }}</h3>
+            <span class="text-xs font-medium text-muted-foreground">{{ col.cards.length }}</span>
+            <div class="ml-auto flex items-center gap-0.5">
+              <button
+                type="button"
+                aria-label="Add issue to {{ col.label }}"
+                class="grid size-6 cursor-pointer place-items-center rounded text-muted-foreground hover:bg-accent hover:text-foreground"
+              >
+                <svg lucidePlus class="size-3.5" aria-hidden="true"></svg>
+              </button>
+              <button
+                type="button"
+                aria-label="Column menu for {{ col.label }}"
+                class="grid size-6 cursor-pointer place-items-center rounded text-muted-foreground hover:bg-accent hover:text-foreground"
+              >
+                <svg lucideEllipsis class="size-3.5" aria-hidden="true"></svg>
+              </button>
+            </div>
+          </header>
+
+          <ul class="space-y-2 px-2 pb-2">
+            @for (card of col.cards; track card.issue.id) {
+              <li>
+                <article
+                  class="group cursor-pointer rounded-md border border-border bg-card p-3 transition-colors hover:border-ring/40"
+                >
+                  <div class="flex items-center gap-1.5 text-xs text-muted-foreground">
+                    @if (card.type) {
+                      <span
+                        class="grid size-4 shrink-0 place-items-center rounded"
+                        [style.background-color]="card.type.color + '20'"
+                        [style.color]="card.type.color"
+                        [attr.aria-label]="card.type.label"
+                        [attr.title]="card.type.label"
+                      >
+                        @switch (card.type.name) {
+                          @case ('bug') {
+                            <svg lucideBug class="size-3" aria-hidden="true"></svg>
+                          }
+                          @case ('feature') {
+                            <svg lucideSparkles class="size-3" aria-hidden="true"></svg>
+                          }
+                          @case ('task') {
+                            <svg lucideSquareCheck class="size-3" aria-hidden="true"></svg>
+                          }
+                          @case ('chore') {
+                            <svg lucideWrench class="size-3" aria-hidden="true"></svg>
+                          }
+                          @case ('spike') {
+                            <svg lucideFlaskConical class="size-3" aria-hidden="true"></svg>
+                          }
+                        }
+                      </span>
+                    }
+                    <span class="font-mono">{{ card.issue.key }}</span>
+                    <span class="ml-auto flex items-center gap-1">
+                      @if (card.issue.isPinned) {
+                        <svg lucidePin class="size-3 text-muted-foreground" aria-label="Pinned" title="Pinned"></svg>
+                      }
+                      @if (card.issue.isFavorite) {
+                        <svg
+                          lucideStar
+                          class="size-3 fill-current text-yellow-400"
+                          aria-label="Favorite"
+                          title="Favorite"
+                        ></svg>
+                      }
+                    </span>
+                  </div>
+
+                  <p class="mt-2 text-sm leading-snug text-foreground">{{ card.issue.title }}</p>
+
+                  @if (card.labels.length > 0) {
+                    <div class="mt-2.5 flex flex-wrap gap-1">
+                      @for (label of card.labels; track label.id) {
+                        <span
+                          class="inline-flex items-center rounded-sm px-1.5 py-0.5 text-[10px] font-medium"
+                          [style.background-color]="label.color + '20'"
+                          [style.color]="label.color"
+                        >
+                          {{ label.name }}
+                        </span>
+                      }
+                    </div>
+                  }
+
+                  <div class="mt-2.5 flex items-center gap-2">
+                    @let prio = priorityMeta(card.issue.priority);
+                    <span
+                      class="inline-flex items-center gap-1 rounded-sm px-1.5 py-0.5 text-[10px] font-medium"
+                      [style.background-color]="prio.color + '20'"
+                      [style.color]="prio.color"
+                    >
+                      <span
+                        class="inline-block size-1.5 rounded-full"
+                        [style.background-color]="prio.color"
+                        aria-hidden="true"
+                      ></span>
+                      {{ prio.label }}
+                    </span>
+
+                    @if (card.issue.estimate !== null) {
+                      <span class="text-[10px] text-muted-foreground">{{ card.issue.estimate }}pt</span>
+                    }
+
+                    @if (card.issue.commentCount > 0) {
+                      <span class="inline-flex items-center gap-1 text-[10px] text-muted-foreground">
+                        <svg lucideMessageSquare class="size-3" aria-hidden="true"></svg>
+                        {{ card.issue.commentCount }}
+                      </span>
+                    }
+
+                    @if (card.assignee) {
+                      <span
+                        class="ml-auto grid size-5 shrink-0 place-items-center rounded-full text-[9px] font-semibold text-white"
+                        [style.background-color]="card.assignee.avatarColor"
+                        [attr.title]="card.assignee.fullName"
+                        [attr.aria-label]="'Assignee: ' + card.assignee.fullName"
+                      >
+                        {{ card.assignee.initials }}
+                      </span>
+                    }
+                  </div>
+                </article>
+              </li>
+            }
+          </ul>
+
+          <button
+            type="button"
+            class="flex w-full cursor-pointer items-center justify-center gap-1.5 border-t border-border/60 px-3 py-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          >
+            <svg lucidePlus class="size-3.5" aria-hidden="true"></svg>
+            <span>New issue</span>
+          </button>
+        </section>
+      }
+    </div>
+  </div>
+</div>
